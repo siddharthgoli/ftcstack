@@ -1,6 +1,5 @@
 {
     "pages": [
-        "index",
         "variables-and-data-types",
         "methods",
         "classes-and-objects",
@@ -12,5 +11,5 @@
     ],
     "root": false,
     "title": "Java Fundamentals",
-    "description": "Core Java concepts for FTC programmers"
+    "description": "Core Java concepts"
 }

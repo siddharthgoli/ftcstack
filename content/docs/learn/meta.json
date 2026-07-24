@@ -1,5 +1,5 @@
 {
-    "pages": ["getting-started"],
+    "pages": ["getting-started", "sdk-basics"],
     "root": false,
     "title": "Learn",
     "description": "FTC, Java, and SDK fundamentals"
