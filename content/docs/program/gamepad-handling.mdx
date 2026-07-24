@@ -1,0 +1,24 @@
+---
+title: Gamepad Handling
+description: Turn driver input into clear robot intent.
+---
+
+# Gamepad Handling
+
+Gamepad handling is the layer that reads buttons and sticks, interprets them, and turns them into robot commands. Clean input handling keeps TeleOp readable and lets the team change controls safely.
+
+## Best practices
+
+- Read gamepad state in one place.
+- Use explicit mappings.
+- Decide early whether buttons toggle or hold.
+
+## FTC connection
+
+Driver controls should feel stable, predictable, and easy to explain to a new teammate.
+
+## Common mistakes
+
+- Scattering button checks everywhere.
+- Changing control bindings without documenting them.
+- Mixing input processing with motor output.

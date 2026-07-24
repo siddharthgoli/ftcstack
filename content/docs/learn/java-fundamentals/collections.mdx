@@ -1,0 +1,32 @@
+---
+title: Collections
+description: Store and manage groups of robot data.
+---
+
+# Collections
+
+Collections hold multiple values in a structured way. FTC teams use them to manage lists of waypoints, sensors, telemetry lines, or queued actions.
+
+## FTC example
+
+```java
+List<String> telemetryLines = new ArrayList<>();
+telemetryLines.add("Drive ready");
+telemetryLines.add("Arm at target");
+```
+
+## What to use
+
+- Use `List` when order matters.
+- Use `Map` when you need key-value lookups.
+- Use `Set` when duplicates should not be allowed.
+
+## Common mistakes
+
+- Using the wrong collection for the job.
+- Modifying collections while iterating without understanding the consequences.
+- Letting collection structure hide the actual robot intent.
+
+## FTC connection
+
+Collections are helpful when the robot needs to manage more than one target, sensor, or action at a time.

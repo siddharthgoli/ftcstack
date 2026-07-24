@@ -1,0 +1,10 @@
+{
+    "pages": [
+        "installing-android-studio",
+        "ftcrobotcontroller",
+        "your-first-opmode"
+    ],
+    "root": false,
+    "title": "Getting Started",
+    "description": "Getting Started"
+}

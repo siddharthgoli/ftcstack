@@ -1,0 +1,34 @@
+---
+title: Subsystems
+description: Divide robot hardware into clear ownership boundaries.
+---
+
+# Subsystems
+
+Subsystems group related hardware and behavior into one place. A drivetrain, arm, intake, or lift can each live in its own subsystem so the rest of the code does not need to know every hardware detail.
+
+## Why subsystems help
+
+- They reduce duplicated hardware code.
+- They make ownership clear.
+- They help multiple students work in parallel.
+
+## FTC example
+
+```java
+public class Drivetrain {
+    public void drive(double forward, double turn) {
+        // output motor commands here
+    }
+}
+```
+
+## Common mistakes
+
+- Turning a subsystem into a junk drawer.
+- Exposing low-level hardware everywhere.
+- Making subsystems depend on each other too tightly.
+
+## FTC connection
+
+Subsystems make it easier to reason about how the robot should behave when several mechanisms are active at once.

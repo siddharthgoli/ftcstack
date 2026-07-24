@@ -1,0 +1,30 @@
+---
+title: Servos
+description: Control mechanism position with servo outputs.
+---
+
+# Servos
+
+Servos move to a position rather than spinning continuously like most motors. FTC teams use them for claws, gates, arms, and linkages.
+
+## FTC example
+
+```java
+clawServo.setPosition(0.75);
+```
+
+## Best practices
+
+- Keep servo ranges documented.
+- Test motion limits carefully.
+- Use named constants for useful positions.
+
+## Common mistakes
+
+- Assuming `0.0` and `1.0` always mean the same physical movement.
+- Driving a mechanism into a hard stop.
+- Scattering servo values through the code instead of naming them.
+
+## FTC connection
+
+Servo code is easier to tune when positions are expressed as named robot states.

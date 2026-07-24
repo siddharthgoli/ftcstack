@@ -2,5 +2,5 @@
     "pages": ["index"],
     "root": false,
     "title": "Snippets",
-    "description": ""
+    "description": "Reusable FTC implementations and templates"
 }

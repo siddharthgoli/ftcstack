@@ -1,0 +1,16 @@
+{
+    "pages": [
+        "index",
+        "project-structure",
+        "opmodes",
+        "hardwaremap",
+        "motors",
+        "servos",
+        "sensors",
+        "gamepads",
+        "telemetry"
+    ],
+    "root": false,
+    "title": "FTC SDK Basics",
+    "description": "Core FTC SDK concepts for robot code"
+}

@@ -1,0 +1,33 @@
+---
+title: OpModes
+description: Understand the robot programs the driver station can start.
+---
+
+# OpModes
+
+An OpMode is a robot program the FTC app can run. TeleOp OpModes respond to driver input, while Autonomous OpModes follow a planned sequence.
+
+## FTC example
+
+```java
+@TeleOp(name = "Drive OpMode")
+public class DriveOpMode extends LinearOpMode {
+    @Override
+    public void runOpMode() {
+        waitForStart();
+        while (opModeIsActive()) {
+            // robot logic here
+        }
+    }
+}
+```
+
+## Common mistakes
+
+- Putting setup logic in the wrong place.
+- Writing code that assumes the OpMode never stops.
+- Mixing TeleOp and Autonomous logic into one file.
+
+## FTC connection
+
+Understanding OpModes is the starting point for every FTC robot program.

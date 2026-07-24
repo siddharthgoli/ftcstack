@@ -1,0 +1,31 @@
+---
+title: Gamepads
+description: Read driver input and translate it into robot actions.
+---
+
+# Gamepads
+
+Gamepads are how drivers control the robot in TeleOp. The code reads buttons, sticks, triggers, and D-pad input each loop.
+
+## FTC example
+
+```java
+double forward = -gamepad1.left_stick_y;
+boolean intake = gamepad1.a;
+```
+
+## Best practices
+
+- Keep input processing separate from output code.
+- Use clear mappings so drivers can learn the controls quickly.
+- Decide whether buttons should toggle or hold behavior.
+
+## Common mistakes
+
+- Spreading gamepad checks all over the codebase.
+- Changing controls without telling the drivers.
+- Letting input handling become unmaintainable.
+
+## FTC connection
+
+Good gamepad handling makes the robot easier to drive under match pressure.

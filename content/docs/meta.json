@@ -1,13 +1,12 @@
 {
     "pages": [
-        "---Home---",
         "index",
         "---Learn---",
         "...learn",
-        "---Programming---",
-        "...programming",
+        "---Program---",
+        "...program",
         "---Control Theory---",
-        "...conntrol-theory",
+        "...control-theory",
         "---Vision---",
         "...vision",
         "---Snippets---",
@@ -15,8 +14,7 @@
         "---Reference---",
         "...reference",
         "---About---",
-        "about",
-        "contributing"
+        "about"
     ],
     "root": true
 }

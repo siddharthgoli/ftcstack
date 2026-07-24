@@ -1,0 +1,44 @@
+---
+title: Your First OpMode
+description: Write and understand the first robot program that actually runs.
+---
+
+# Your First OpMode
+
+An OpMode is a robot program that the driver station can start. LinearOpMode is commonly used for autonomous, while iterative OpModes are often used for TeleOp style logic.
+
+## TeleOp vs Autonomous
+
+- TeleOp reacts to driver input.
+- Autonomous runs a scripted plan.
+- Both share the same hardware and codebase.
+
+## Simple motor example
+
+```java
+@TeleOp(name = "First OpMode")
+public class FirstOpMode extends LinearOpMode {
+    @Override
+    public void runOpMode() {
+        waitForStart();
+
+        while (opModeIsActive()) {
+            double power = -gamepad1.left_stick_y;
+            leftMotor.setPower(power);
+            rightMotor.setPower(power);
+        }
+    }
+}
+```
+
+## What this teaches
+
+- Robot code runs in a loop while the OpMode is active.
+- Driver input becomes motor commands.
+- Readability matters even in very small programs.
+
+## Common mistakes
+
+- Forgetting `waitForStart()` in autonomous-style code.
+- Leaving motor power at a constant value without control checks.
+- Writing code that works once but is impossible to maintain.

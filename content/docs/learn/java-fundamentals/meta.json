@@ -1,0 +1,16 @@
+{
+    "pages": [
+        "index",
+        "variables-and-data-types",
+        "methods",
+        "classes-and-objects",
+        "object-oriented-programming",
+        "interfaces",
+        "enums",
+        "collections",
+        "exceptions"
+    ],
+    "root": false,
+    "title": "Java Fundamentals",
+    "description": "Core Java concepts for FTC programmers"
+}

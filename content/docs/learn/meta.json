@@ -1,6 +1,6 @@
 {
-    "pages": ["index", "test"],
+    "pages": ["getting-started"],
     "root": false,
     "title": "Learn",
-    "description": ""
+    "description": "FTC, Java, and SDK fundamentals"
 }

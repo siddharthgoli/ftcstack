@@ -1,0 +1,31 @@
+---
+title: Motors
+description: Control drivetrain and mechanism motion with motor power and encoder data.
+---
+
+# Motors
+
+Motors convert power commands into motion. FTC teams use them for drivetrains, lifts, intakes, and many other mechanisms.
+
+## FTC example
+
+```java
+motor.setPower(0.5);
+int ticks = motor.getCurrentPosition();
+```
+
+## Best practices
+
+- Clamp power to valid ranges.
+- Learn whether the motor needs encoders.
+- Check motor direction early.
+
+## Common mistakes
+
+- Forgetting to reverse one side of a drivetrain.
+- Running a motor without understanding the expected load.
+- Ignoring encoder feedback when the mechanism needs position control.
+
+## FTC connection
+
+Motor setup affects both driver feel and autonomous accuracy.

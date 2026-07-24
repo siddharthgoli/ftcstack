@@ -1,0 +1,35 @@
+---
+title: Setting Up FTC Robot Controller
+description: Understand the FTC project structure and deployment flow.
+---
+
+# Setting Up FTC Robot Controller
+
+The FTC Robot Controller project is the base project your code runs inside. The important part is not just opening the project, but understanding where your code lives and how it gets deployed to the robot.
+
+## Key pieces
+
+- The Robot Controller app runs on the Control Hub or Driver Hub device.
+- The TeamCode module is where your team writes code.
+- Gradle builds and packages the project.
+- Deployment sends the compiled code to the device.
+
+## FTC example
+
+Keep team logic in TeamCode and avoid editing library code unless you truly need to.
+
+```text
+TeamCode/
+  src/main/java/...   <- your robot code
+  src/main/res/...    <- resources and configuration
+```
+
+## Common mistakes
+
+- Putting team code in the wrong module.
+- Editing generated or library files directly.
+- Not understanding that a successful build is not the same as a good robot architecture.
+
+## Next step
+
+Read [Git and GitHub Workflow](./git-and-github-workflow) before you start making team changes.

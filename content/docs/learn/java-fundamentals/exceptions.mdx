@@ -1,0 +1,34 @@
+---
+title: Exceptions
+description: Handle failures so robot code stays stable under pressure.
+---
+
+# Exceptions
+
+Exceptions represent problems that happen while code is running. In FTC, they often show up when hardware is missing, a file is unavailable, or a value is invalid.
+
+## FTC example
+
+```java
+try {
+    telemetry.addData("Status", "Initializing");
+} catch (Exception error) {
+    telemetry.addData("Error", error.getMessage());
+}
+```
+
+## Best practice
+
+- Catch only the errors you expect.
+- Fail clearly instead of hiding the problem.
+- Use exceptions to make debugging easier, not harder.
+
+## Common mistakes
+
+- Swallowing every exception and ignoring the root cause.
+- Using exceptions as normal control flow.
+- Leaving hardware initialization failures unexplained.
+
+## FTC connection
+
+Good exception handling makes robot startup and debugging safer when a device or configuration is wrong.

@@ -1,0 +1,24 @@
+---
+title: HardwareMap
+description: Bind configured devices from the robot configuration into code.
+---
+
+# HardwareMap
+
+HardwareMap gives your program access to the devices configured on the robot. It is the bridge between the robot configuration screen and your Java code.
+
+## FTC example
+
+```java
+DcMotor leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
+```
+
+## Common mistakes
+
+- Using the wrong device name.
+- Assuming hardware exists without checking the configuration.
+- Mixing initialization with robot behavior.
+
+## FTC connection
+
+If HardwareMap is wrong, almost nothing else works. This is one of the first places to check during debugging.

@@ -1,0 +1,32 @@
+---
+title: Telemetry
+description: Report robot state so the team can see what the code is doing.
+---
+
+# Telemetry
+
+Telemetry shows data from the robot on the driver station or dashboard. It is one of the most important debugging tools in FTC.
+
+## FTC example
+
+```java
+telemetry.addData("Lift Position", liftMotor.getCurrentPosition());
+telemetry.addData("Intake State", intakeState);
+telemetry.update();
+```
+
+## Best practices
+
+- Show the values you actually need.
+- Keep the output readable.
+- Use telemetry during setup, tuning, and competition debugging.
+
+## Common mistakes
+
+- Printing too much and hiding the signal.
+- Forgetting to update telemetry.
+- Leaving debug data out when the robot is failing.
+
+## FTC connection
+
+Telemetry often reveals the problem faster than stepping through code.

@@ -1,0 +1,33 @@
+---
+title: Interfaces
+description: Define shared behavior contracts for FTC components.
+---
+
+# Interfaces
+
+An interface describes what a class can do without deciding how it does it. FTC teams can use interfaces to make subsystems, controllers, or strategies interchangeable.
+
+## FTC example
+
+```java
+public interface Drivetrain {
+    void drive(double forward, double strafe, double turn);
+    void stop();
+}
+```
+
+## Why it helps
+
+- Lets you swap implementations.
+- Makes testing and simulation easier.
+- Clarifies what a component promises to provide.
+
+## Common mistakes
+
+- Creating an interface for every class just because Java supports it.
+- Hiding simple code behind unnecessary layers.
+- Forgetting that interfaces should describe useful team boundaries.
+
+## FTC connection
+
+Interfaces are useful when two implementations share behavior, such as a real drivetrain and a simulated drivetrain.

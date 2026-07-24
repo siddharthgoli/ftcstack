@@ -1,0 +1,25 @@
+---
+title: File Organization
+description: Structure the codebase so students can find and change things quickly.
+---
+
+# File Organization
+
+File organization should match how the team thinks about the robot. A clean folder structure is one of the fastest ways to make a codebase easier to maintain.
+
+## Suggested shape
+
+- `opmodes` for driver-controlled and autonomous entry points.
+- `subsystems` for hardware ownership.
+- `commands` or `actions` for higher-level behavior.
+- `util` for helpers, tuning, and shared math.
+
+## Common mistakes
+
+- Using vague folder names.
+- Letting utility classes spread everywhere.
+- Mixing experimental code with production code.
+
+## FTC connection
+
+If a new student can find the drivetrain or autonomous code quickly, the structure is working.

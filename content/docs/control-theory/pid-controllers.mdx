@@ -1,0 +1,20 @@
+---
+title: PID Controllers
+description: Use proportional, integral, and derivative terms to shape control behavior.
+---
+
+# PID Controllers
+
+PID controllers are one of the most common ways to improve FTC control. The controller reacts to the current error, the accumulated error, and the rate of change of the error.
+
+## FTC intuition
+
+- P reacts to how far the robot is from the target.
+- I reacts to long-term bias.
+- D reacts to how quickly the error is changing.
+
+## Common mistakes
+
+- Turning every problem into a PID problem.
+- Changing multiple gains at once without testing.
+- Forgetting that the mechanism itself affects the result.

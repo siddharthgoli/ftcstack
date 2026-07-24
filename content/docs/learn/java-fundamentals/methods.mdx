@@ -1,0 +1,33 @@
+---
+title: Methods
+description: Package repeated robot behavior into reusable actions.
+---
+
+# Methods
+
+Methods group related instructions into a reusable unit. In FTC robot code, methods reduce repetition and help separate hardware logic from higher-level decisions.
+
+## FTC example
+
+```java
+private void setDrivePower(double left, double right) {
+    leftMotor.setPower(left);
+    rightMotor.setPower(right);
+}
+```
+
+## Why methods matter
+
+- They keep robot code readable.
+- They make testing easier.
+- They let you reuse behavior in TeleOp and Autonomous.
+
+## Common mistakes
+
+- Writing one huge method for the entire robot.
+- Copying the same logic into many places.
+- Giving methods vague names that do not explain their job.
+
+## FTC connection
+
+A method like `setDrivePower()` makes it obvious what the drivetrain is doing, which helps when your team needs to debug or tune the robot.

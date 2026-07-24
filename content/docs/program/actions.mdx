@@ -1,0 +1,18 @@
+---
+title: Actions
+description: Package robot behavior into reusable units of work.
+---
+
+# Actions
+
+Actions describe work the robot can perform, such as moving an arm, following a path, or running an intake. They are useful when the team wants a readable way to represent behavior.
+
+## FTC connection
+
+Actions become especially useful when the same behavior is reused in multiple places.
+
+## Common mistakes
+
+- Making actions depend on too much hidden state.
+- Repeating low-level hardware code inside every action.
+- Confusing actions with hardware ownership.

@@ -1,0 +1,35 @@
+---
+title: Enums
+description: Represent robot modes and states with readable named values.
+---
+
+# Enums
+
+Enums are named sets of values. They are useful in FTC for robot states, alliance colors, mechanism modes, and autonomous routines.
+
+## FTC example
+
+```java
+public enum IntakeState {
+    OFF,
+    INTAKING,
+    HOLDING,
+    OUTTAKING
+}
+```
+
+## Why they help
+
+- They make state names readable.
+- They reduce magic numbers and fragile string comparisons.
+- They simplify state machine code.
+
+## Common mistakes
+
+- Using strings when an enum would be safer.
+- Packing too much logic into the enum itself.
+- Creating one giant enum for unrelated robot concepts.
+
+## FTC connection
+
+Enums are a clean way to describe the robot’s current mode when different code paths depend on that mode.

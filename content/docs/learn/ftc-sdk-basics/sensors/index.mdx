@@ -1,0 +1,30 @@
+---
+title: Sensors
+description: Read the robot and environment so code can react intelligently.
+---
+
+# Sensors
+
+Sensors let your robot measure the world. FTC robots use encoders, distance sensors, IMUs, color sensors, and cameras depending on the season and strategy.
+
+## FTC example
+
+```java
+double distance = distanceSensor.getDistance(DistanceUnit.CM);
+```
+
+## Best practices
+
+- Know what each sensor measures.
+- Test sensor values before relying on them.
+- Filter noisy values when needed.
+
+## Common mistakes
+
+- Using sensor values without checking units.
+- Assuming sensor readings are perfect.
+- Forgetting that sensors need debugging as much as motors do.
+
+## FTC connection
+
+Sensors are what make autonomous and closed-loop control possible.
