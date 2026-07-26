@@ -1,14 +1,5 @@
 {
-    "pages": [
-        "project-structure",
-        "your-first-opmode",
-        "hardwaremap",
-        "telemetry",
-        "motors",
-        "servos",
-        "sensors",
-        "gamepads"
-    ],
+    "pages": ["project-structure"],
     "root": false,
     "title": "SDK Basics",
     "description": "Core FTC SDK concepts"
