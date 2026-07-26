@@ -149,7 +149,7 @@ export default function HomePage() {
                                 not just in a demo.
                             </h1>
                             <p className="max-w-2xl text-lg leading-8 text-fd-muted-foreground md:text-xl">
-                                Competitive Codebase 101 is a professional FTC
+                                FTC Code Companion is a professional FTC
                                 programming curriculum for teams that want
                                 reliable TeleOp, strong autonomous systems, and
                                 a codebase the whole roster can maintain.
