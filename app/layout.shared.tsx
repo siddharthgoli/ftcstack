@@ -18,7 +18,7 @@ export function baseOptions(): BaseLayoutProps {
             title: (
                 <>
                     <img
-                        className="size-12"
+                        className="size-10"
                         src={logoSrc}
                         alt="Don't Blink Logo"
                     />
