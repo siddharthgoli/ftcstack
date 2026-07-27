@@ -1,23 +1,118 @@
 ---
 title: FTC SDK Basics
-description: Learn the building blocks exposed by the FTC SDK.
+description: Learn the fundamentals of programming an FTC robot using the FTC SDK.
 ---
 
-# FTC SDK Basics
+# SDK Basics
 
-The FTC SDK is the set of classes and APIs your robot code uses to talk to hardware and driver station input. This section explains the pieces you use every day while building a robot codebase.
+The FTC SDK provides the tools needed to communicate with your robot hardware and create programs that run on the Control Hub.
 
-## Topics
+Before building advanced systems like subsystems, autonomous routines, or command-based architectures, it is important to understand the basic components of an FTC program.
 
-- Project structure
-- OpModes
-- HardwareMap
+In this section, you will learn how to:
+
+- Create and run OpModes
+- Control robot hardware
+- Read driver input
+- Debug programs using telemetry
+- Work with motors, servos, and sensors
+- Understand timing and robot configuration
+
+## What is the FTC SDK?
+
+The FTC SDK is a collection of Java libraries that allow your code to interact with the robot.
+
+Instead of directly controlling hardware, your code uses the SDK to communicate with:
+
 - Motors
 - Servos
 - Sensors
 - Gamepads
-- Telemetry
+- Hubs
 
-## Why this matters
+Example:
 
-If you understand the SDK well, you can write code that is easier to debug, easier to organize, and easier to hand off between students.
+```java
+motor.setPower(1.0);
+```
+
+The SDK converts this command into instructions for the physical motor.
+
+## How FTC Programs Work
+
+Most FTC programs follow this general flow:
+
+```
+Initialize Hardware
+        ↓
+Wait for Start
+        ↓
+Read Inputs
+        ↓
+Run Robot Logic
+        ↓
+Control Hardware
+        ↓
+Repeat
+```
+
+During a match, your code continuously reads information from the robot and makes decisions.
+
+## Before You Start
+
+You should already understand basic Java concepts such as:
+
+- Variables
+- Conditionals
+- Loops
+- Methods
+- Classes and objects
+
+If you need a refresher, review the [Java section](../getting-started/java-fundamentals/index.mdx) first.
+
+## SDK Basics Lessons
+
+Follow these lessons in order:
+
+1. [Project Structure](./project-structure.mdx)
+    - Learn how the SDK is structured.
+
+2. [Your First OpMode](./your-first-opmode.mdx)
+    - Learn how FTC programs start and run.
+
+3. [Telemetry](./telemetry.mdx)
+    - Display information and debug your robot.
+
+4. [Gamepads](./gamepads.mdx)
+    - Read driver inputs and control mechanisms.
+
+5. [HardwareMap](./hardwaremap.mdx)
+    - Connect your code to physical hardware.
+
+6. [Motors](./motors.mdx)
+    - Control movement and motor-based mechanisms.
+
+7. [Servos](./servos.mdx)
+    - Control position-based mechanisms.
+
+8. [Sensors](./sensors/index.mdx)
+    - Add feedback and awareness to your robot.
+
+9. [Timing](./timing.mdx)
+    - Control delays, actions, and sequences.
+
+10. [Robot Configuration](./robot-config.mdx)
+    - Connect your software configuration to your hardware.
+
+## What's Next?
+
+After learning the SDK basics, you can move on to more advanced FTC programming concepts:
+
+- Code organization
+- Subsystems
+- Command-based programming
+- Autonomous programming
+- Motion planning
+- Vision systems
+
+These concepts build on the foundation covered in this section.

@@ -2,6 +2,7 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import "./global.css";
 import { JetBrains_Mono, Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { Metadata } from "next";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -12,6 +13,13 @@ const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
     variable: "--font-mono",
 });
+
+export const metadata: Metadata = {
+    title: "FTC Code Companion",
+    icons: {
+        icon: "/db-logo.png",
+    },
+};
 
 export default function Layout({ children }: LayoutProps<"/">) {
     return (

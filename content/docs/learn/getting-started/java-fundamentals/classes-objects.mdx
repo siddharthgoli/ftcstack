@@ -1,0 +1,116 @@
+---
+title: Classes & Objects
+description: Create your own types in Java.
+---
+
+Everything in the FTC SDK is built using classes and objects.
+
+A **class** is a blueprint.
+
+An **object** is an instance of that blueprint.
+
+## Creating a Class
+
+```java
+public class Robot {
+
+}
+```
+
+## Fields
+
+Fields store information about an object.
+
+```java
+public class Robot {
+
+    String name;
+    int motors;
+
+}
+```
+
+## Constructors
+
+A constructor initializes an object.
+
+```java
+public class Robot {
+
+    String name;
+
+    public Robot(String name) {
+        this.name = name;
+    }
+
+}
+```
+
+Create an object:
+
+```java
+Robot robot = new Robot("Don't Blink");
+```
+
+## Methods
+
+Classes can contain methods.
+
+```java
+public class Robot {
+
+    public void drive() {
+        System.out.println("Driving");
+    }
+
+}
+```
+
+Call the method:
+
+```java
+robot.drive();
+```
+
+## Access Modifiers
+
+| Modifier    | Meaning                              |
+| ----------- | ------------------------------------ |
+| `public`    | Accessible anywhere                  |
+| `private`   | Only inside the class                |
+| `protected` | Accessible in subclasses and package |
+
+Use `private` unless something needs to be accessed from outside the class.
+
+## FTC Example
+
+Subsystems are classes.
+
+```java
+public class Intake {
+
+    public void start() {
+
+    }
+
+    public void stop() {
+
+    }
+
+}
+```
+
+Then use them:
+
+```java
+Intake intake = new Intake();
+intake.start();
+```
+
+## Key Takeaways
+
+- Classes define objects.
+- Objects store data and behavior.
+- Constructors initialize objects.
+- Fields store information.
+- Methods perform actions.

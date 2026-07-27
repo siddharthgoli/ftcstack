@@ -1,0 +1,101 @@
+---
+title: Object-Oriented Programming
+description: Reuse and organize code using object-oriented principles.
+---
+
+Object-oriented programming (OOP) helps organize large programs into reusable pieces.
+
+## Inheritance
+
+A class can inherit from another class.
+
+```java
+public class Animal {
+
+    public void speak() {
+        System.out.println("...");
+    }
+
+}
+```
+
+```java
+public class Dog extends Animal {
+
+}
+```
+
+`Dog` automatically has the `speak()` method.
+
+## Method Overriding
+
+A subclass can replace a method from its parent.
+
+```java
+@Override
+public void speak() {
+    System.out.println("Woof!");
+}
+```
+
+## Polymorphism
+
+A parent reference can refer to different child objects.
+
+```java
+Animal animal = new Dog();
+```
+
+Calling `speak()` runs the `Dog` version.
+
+## Interfaces
+
+An interface defines what a class must implement.
+
+```java
+public interface Driveable {
+
+    void drive();
+
+}
+```
+
+Implement it:
+
+```java
+public class Robot implements Driveable {
+
+    @Override
+    public void drive() {
+
+    }
+
+}
+```
+
+Many FTC libraries use interfaces to define common behavior.
+
+## Abstract Classes
+
+An abstract class cannot be created directly.
+
+It is meant to be extended by other classes.
+
+```java
+public abstract class Subsystem {
+
+    public abstract void update();
+
+}
+```
+
+## FTC Example
+
+Many FTC classes inherit from other classes or implement interfaces. For example, OpModes extend `LinearOpMode` or `OpMode`.
+
+## Key Takeaways
+
+- Inheritance lets classes reuse code.
+- Polymorphism allows one type to represent many objects.
+- Interfaces define required behavior.
+- Abstract classes provide a common foundation.

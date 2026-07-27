@@ -1,30 +1,119 @@
 ---
 title: Servos
-description: Control mechanism position with servo outputs.
+description: Control position-based mechanisms with servos.
 ---
 
-# Servos
+Servos are motors designed to move to specific positions.
 
-Servos move to a position rather than spinning continuously like most motors. FTC teams use them for claws, gates, arms, and linkages.
+They are commonly used for:
 
-## FTC example
+- Claws
+- Arms
+- Small mechanisms
+- Linkages
+
+## Getting a Servo
 
 ```java
-clawServo.setPosition(0.75);
+Servo servo;
+
+servo = hardwareMap.get(Servo.class, "servo");
 ```
 
-## Best practices
+## Servo Position
 
-- Keep servo ranges documented.
-- Test motion limits carefully.
-- Use named constants for useful positions.
+Standard servos use positions from:
 
-## Common mistakes
+```
+0.0 to 1.0
+```
 
-- Assuming `0.0` and `1.0` always mean the same physical movement.
-- Driving a mechanism into a hard stop.
-- Scattering servo values through the code instead of naming them.
+Example:
 
-## FTC connection
+```java
+servo.setPosition(0.5);
+```
 
-Servo code is easier to tune when positions are expressed as named robot states.
+The exact physical position depends on how the servo is mounted.
+
+## Calibration
+
+Servo positions usually need tuning.
+
+Example:
+
+```java
+double OPEN = 0.8;
+double CLOSED = 0.2;
+```
+
+Then:
+
+```java
+servo.setPosition(OPEN);
+```
+
+Using constants makes tuning easier.
+
+## Servo Direction
+
+If a servo moves backwards:
+
+```java
+servo.setDirection(Servo.Direction.REVERSE);
+```
+
+## Standard vs Continuous Rotation Servos
+
+### Standard Servo
+
+Controls position.
+
+Example:
+
+```
+0.0 → Left
+0.5 → Center
+1.0 → Right
+```
+
+### Continuous Rotation Servo
+
+Controls speed instead of position.
+
+Example:
+
+```java
+servo.setPower(1.0);
+```
+
+Continuous rotation servos behave more like motors.
+
+## Common Servo Issues
+
+### Servo Moves Wrong Direction
+
+Reverse it:
+
+```java
+servo.setDirection(
+    Servo.Direction.REVERSE
+);
+```
+
+### Servo Does Not Reach Position
+
+Check:
+
+- Mechanical limits
+- Servo range
+- Mounting
+- Power supply
+
+## Key Takeaways
+
+- Servos control position.
+- Standard servos use positions from `0.0` to `1.0`.
+- Calibration is important.
+- Use constants for servo positions.
+- Continuous rotation servos work differently from standard servos.

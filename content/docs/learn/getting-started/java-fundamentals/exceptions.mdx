@@ -1,34 +1,90 @@
 ---
 title: Exceptions
-description: Handle failures so robot code stays stable under pressure.
+description: Understand errors and how Java reports them.
 ---
 
-# Exceptions
+An **exception** is an error that occurs while your program is running. When an exception happens, Java stops the current operation and prints information about what went wrong.
 
-Exceptions represent problems that happen while code is running. In FTC, they often show up when hardware is missing, a file is unavailable, or a value is invalid.
+Learning to read exceptions is an important debugging skill.
 
-## FTC example
+## Stack Trace
+
+When an exception occurs, Java prints a **stack trace**.
+
+```
+Exception in thread "main" java.lang.NullPointerException
+    at org.firstinspires.ftc.teamcode.Robot.drive(Robot.java:42)
+```
+
+The stack trace tells you:
+
+- What type of exception occurred
+- Which file it happened in
+- Which line caused the problem
+
+Always start by looking at the **first line in your own code**.
+
+## Common Exceptions
+
+### NullPointerException
+
+This happens when you try to use an object that hasn't been created.
+
+```java
+DcMotor motor = null;
+
+motor.setPower(1.0); // Error
+```
+
+This is one of the most common exceptions in FTC.
+
+### ArrayIndexOutOfBoundsException
+
+This happens when you access an index that doesn't exist.
+
+```java
+int[] numbers = {1, 2, 3};
+
+System.out.println(numbers[3]); // Error
+```
+
+Remember that arrays start at index `0`.
+
+### IllegalArgumentException
+
+Some methods only accept certain values.
+
+```java
+servo.setPosition(2.0); // Error
+```
+
+Always check the documentation to see what values are allowed.
+
+## try-catch
+
+Sometimes you can handle exceptions using a `try-catch` block.
 
 ```java
 try {
-    telemetry.addData("Status", "Initializing");
-} catch (Exception error) {
-    telemetry.addData("Error", error.getMessage());
+    // Code that might fail
+} catch (Exception e) {
+    e.printStackTrace();
+    // Fallback
 }
 ```
 
-## Best practice
+Most FTC code doesn't use `try-catch` very often. It's usually better to fix the root cause of the exception.
 
-- Catch only the errors you expect.
-- Fail clearly instead of hiding the problem.
-- Use exceptions to make debugging easier, not harder.
+## Tips for Debugging
 
-## Common mistakes
+- Read the exception message.
+- Find the line where the exception occurred.
+- Check the values of your variables.
+- Use telemetry to print information while debugging.
 
-- Swallowing every exception and ignoring the root cause.
-- Using exceptions as normal control flow.
-- Leaving hardware initialization failures unexplained.
+## Key Takeaways
 
-## FTC connection
-
-Good exception handling makes robot startup and debugging safer when a device or configuration is wrong.
+- Exceptions are runtime errors.
+- The stack trace tells you where the error occurred.
+- `NullPointerException` is one of the most common FTC errors.
+- Fix the cause instead of hiding exceptions.

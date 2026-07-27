@@ -1,13 +1,15 @@
 {
     "pages": [
-        "variables-and-data-types",
+        "basics",
+        "conditionals",
+        "loops",
         "methods",
-        "classes-and-objects",
-        "object-oriented-programming",
-        "interfaces",
+        "arrays-lists",
+        "classes-objects",
+        "oop",
         "enums",
-        "collections",
-        "exceptions"
+        "exceptions",
+        "style-guide"
     ],
     "root": false,
     "title": "Java Fundamentals",

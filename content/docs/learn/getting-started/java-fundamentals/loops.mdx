@@ -1,0 +1,86 @@
+---
+title: Loops
+description: Repeat code efficiently using loops.
+---
+
+## while Loop
+
+A `while` loop runs as long as a condition is true.
+
+```java
+int i = 0;
+
+while (i < 5) {
+    System.out.println(i);
+    i++;
+}
+```
+
+## for Loop
+
+A `for` loop is useful when you know how many times something should repeat.
+
+```java
+for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}
+```
+
+## Enhanced for Loop
+
+This loop goes through every element in a collection.
+
+```java
+String[] motors = {
+    "frontLeft",
+    "frontRight",
+    "backLeft",
+    "backRight"
+};
+
+for (String motor : motors) {
+    System.out.println(motor);
+}
+```
+
+## break
+
+`break` exits a loop immediately.
+
+```java
+for (int i = 0; i < 10; i++) {
+
+    if (i == 5) {
+        break;
+    }
+
+    System.out.println(i);
+}
+```
+
+## continue
+
+`continue` skips the rest of the current iteration.
+
+```java
+for (int i = 0; i < 5; i++) {
+
+    if (i == 2) {
+        continue;
+    }
+
+    System.out.println(i);
+}
+```
+
+## FTC Example
+
+Most FTC programs don't use loops like these very often because the SDK repeatedly calls methods such as `loop()` or `runOpMode()` for you. However, loops are still useful when processing arrays, lists, or performing calculations.
+
+## Key Takeaways
+
+- `while` loops repeat while a condition is true.
+- `for` loops repeat a set number of times.
+- Enhanced `for` loops iterate through collections.
+- `break` exits a loop.
+- `continue` skips to the next iteration.

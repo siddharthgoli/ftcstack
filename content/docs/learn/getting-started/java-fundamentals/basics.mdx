@@ -1,0 +1,130 @@
+---
+title: The Basics
+description: Variables, data types, operators, printing, and comments.
+---
+
+# Basics
+
+Every Java program is built from a few fundamental concepts.
+
+## Variables
+
+Variables store information.
+
+```java
+int score = 10;
+String teamName = "Don't Blink";
+```
+
+You can change the value later.
+
+```java
+score = 15;
+```
+
+## Data Types
+
+Every variable has a type.
+
+| Type      | Example | Description      |
+| --------- | ------- | ---------------- |
+| `int`     | `5`     | Whole numbers    |
+| `double`  | `3.14`  | Decimal numbers  |
+| `boolean` | `true`  | True or false    |
+| `char`    | `'A'`   | Single character |
+| `String`  | `"FTC"` | Text             |
+
+```java
+int motors = 4;
+double power = 0.75;
+boolean intakeRunning = true;
+String robotName = "Don't Blink";
+```
+
+## Operators
+
+Arithmetic operators perform math.
+
+| Operator | Description         | Example | Result |
+| -------- | ------------------- | ------- | ------ |
+| `+`      | Addition            | `5 + 3` | `8`    |
+| `-`      | Subtraction         | `5 - 3` | `2`    |
+| `*`      | Multiplication      | `5 * 3` | `15`   |
+| `/`      | Division            | `6 / 2` | `3`    |
+| `%`      | Modulus (Remainder) | `7 % 3` | `1`    |
+
+Assignment operators update variables.
+
+| Operator | Description         | Example  |
+| -------- | ------------------- | -------- |
+| `=`      | Assignment          | `x = 5`  |
+| `+=`     | Add and assign      | `x += 2` |
+| `-=`     | Subtract and assign | `x -= 2` |
+| `*=`     | Multiply and assign | `x *= 2` |
+| `/=`     | Divide and assign   | `x /= 2` |
+| `%=`     | Modulus and assign  | `x %= 2` |
+| `++`     | Increment by 1      | `x++`    |
+| `--`     | Decrement by 1      | `x--`    |
+
+Comparison operators compare values.
+
+| Operator | Description              | Example  |
+| -------- | ------------------------ | -------- |
+| `==`     | Equal to                 | `x == 5` |
+| `!=`     | Not equal to             | `x != 5` |
+| `>`      | Greater than             | `x > 5`  |
+| `<`      | Less than                | `x < 5`  |
+| `>=`     | Greater than or equal to | `x >= 5` |
+| `<=`     | Less than or equal to    | `x <= 5` |
+
+Logical operators combine conditions.
+
+| Operator | Description | Example            |
+| -------- | ----------- | ------------------ |
+| `&&`     | Logical AND | `x > 0 && y > 0`   |
+| `\|\|`   | Logical OR  | `x > 0 \|\| y > 0` |
+| `!`      | Logical NOT | `!isRunning`       |
+
+## Printing
+
+You can print information to the console.
+
+```java
+System.out.println("Hello!");
+```
+
+In FTC, you'll usually use telemetry instead.
+
+```java
+telemetry.addData("Power", power);
+telemetry.update();
+```
+
+## Comments
+
+Comments explain your code.
+
+Single-line comment:
+
+```java
+// Drive forward
+```
+
+Multi-line comment:
+
+```java
+/*
+This code controls
+the intake.
+*/
+```
+
+Comments are ignored when your program runs.
+
+## Key Takeaways
+
+- Variables store data.
+- Every variable has a type.
+- Operators perform calculations and comparisons.
+- `System.out.println()` prints text.
+- Comments help explain your code.

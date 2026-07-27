@@ -1,0 +1,76 @@
+---
+title: Conditionals
+description: Make decisions with if statements and switch statements.
+---
+
+## if statements
+
+An `if` statement runs code only if a condition is true.
+
+```java
+if (batteryVoltage > 12) {
+    System.out.println("Ready!");
+}
+```
+
+## if-else
+
+If the condition is false, the `else` block runs.
+
+```java
+if (power > 0.5) {
+    System.out.println("Fast");
+} else {
+    System.out.println("Slow");
+}
+```
+
+## else if
+
+Check multiple conditions.
+
+```java
+if (score >= 100) {
+    System.out.println("Excellent");
+} else if (score >= 80) {
+    System.out.println("Good");
+} else {
+    System.out.println("Keep practicing");
+}
+```
+
+## switch
+
+A `switch` statement is useful when checking one variable against several possible values.
+
+```java
+switch (alliance) {
+    case RED:
+        System.out.println("Red Alliance");
+        break;
+
+    case BLUE:
+        System.out.println("Blue Alliance");
+        break;
+
+    default:
+        System.out.println("Unknown");
+}
+```
+
+## FTC Example
+
+```java
+if (gamepad1.a) {
+    intake.start();
+} else {
+    intake.stop();
+}
+```
+
+## Key Takeaways
+
+- Use `if` for decisions.
+- Use `else` for an alternative.
+- Use `else if` for multiple conditions.
+- Use `switch` when checking many possible values.

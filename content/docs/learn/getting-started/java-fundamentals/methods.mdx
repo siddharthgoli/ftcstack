@@ -1,33 +1,85 @@
 ---
 title: Methods
-description: Package repeated robot behavior into reusable actions.
+description: Organize your code into reusable blocks.
 ---
 
-# Methods
+Methods are reusable blocks of code that perform a specific task. Instead of writing the same code multiple times, you can write it once and call it whenever you need it.
 
-Methods group related instructions into a reusable unit. In FTC robot code, methods reduce repetition and help separate hardware logic from higher-level decisions.
-
-## FTC example
+## Creating a Method
 
 ```java
-private void setDrivePower(double left, double right) {
-    leftMotor.setPower(left);
-    rightMotor.setPower(right);
+public void sayHello() {
+    System.out.println("Hello!");
 }
 ```
 
-## Why methods matter
+Call it like this:
 
-- They keep robot code readable.
-- They make testing easier.
-- They let you reuse behavior in TeleOp and Autonomous.
+```java
+sayHello();
+```
 
-## Common mistakes
+## Parameters
 
-- Writing one huge method for the entire robot.
-- Copying the same logic into many places.
-- Giving methods vague names that do not explain their job.
+Methods can accept information called **parameters**.
 
-## FTC connection
+```java
+public void drive(double power) {
+    System.out.println(power);
+}
+```
 
-A method like `setDrivePower()` makes it obvious what the drivetrain is doing, which helps when your team needs to debug or tune the robot.
+```java
+drive(0.75);
+```
+
+## Return Values
+
+Some methods return a value.
+
+```java
+public int square(int number) {
+    return number * number;
+}
+```
+
+```java
+int result = square(5);
+```
+
+If a method doesn't return anything, use `void`.
+
+## Scope
+
+Variables only exist within the block where they are declared.
+
+```java
+public void example() {
+    int x = 5;
+}
+```
+
+`x` cannot be used outside the method.
+
+```java
+System.out.println(x); // Error
+```
+
+## FTC Example
+
+```java
+public void openClaw() {
+    claw.setPosition(1.0);
+}
+
+public void closeClaw() {
+    claw.setPosition(0.0);
+}
+```
+
+## Key Takeaways
+
+- Methods organize your code.
+- Parameters allow methods to receive data.
+- Methods can return values.
+- Local variables only exist within their scope.

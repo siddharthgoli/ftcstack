@@ -1,44 +1,188 @@
 ---
 title: Your First OpMode
-description: Write and understand your first robot program.
+description: Learn how to create and run your first FTC robot program.
 ---
 
-# Your First OpMode
+An **OpMode** is a program that runs on your robot. Every TeleOp, Autonomous, and testing program you create is an OpMode.
 
-An OpMode is a robot program that the driver station can start. LinearOpMode is commonly used for autonomous, while iterative OpModes are often used for TeleOp style logic.
+OpModes allow your code to communicate with the FTC Robot Controller and control your hardware.
 
-## TeleOp vs Autonomous
+## Creating an OpMode
 
-- TeleOp reacts to driver input.
-- Autonomous runs a scripted plan.
-- Both share the same hardware and codebase.
+OpModes are created as Java classes that extend either:
 
-## Simple motor example
+- `LinearOpMode`
+- `OpMode`
+
+Example:
 
 ```java
-@TeleOp(name = "First OpMode")
-public class FirstOpMode extends LinearOpMode {
+@TeleOp
+public class ExampleTeleOp extends LinearOpMode {
+
     @Override
     public void runOpMode() {
-        waitForStart();
 
-        while (opModeIsActive()) {
-            double power = -gamepad1.left_stick_y;
-            leftMotor.setPower(power);
-            rightMotor.setPower(power);
-        }
     }
 }
 ```
 
-## What this teaches
+The annotation tells the FTC SDK what type of program this is.
 
-- Robot code runs in a loop while the OpMode is active.
-- Driver input becomes motor commands.
-- Readability matters even in very small programs.
+## TeleOp vs Autonomous
 
-## Common mistakes
+### TeleOp
 
-- Forgetting `waitForStart()` in autonomous-style code.
-- Leaving motor power at a constant value without control checks.
-- Writing code that works once but is impossible to maintain.
+TeleOp programs are controlled by drivers using gamepads.
+
+```java
+@TeleOp(name = "Drive TeleOp")
+public class DriveTeleOp extends LinearOpMode {
+
+}
+```
+
+Examples:
+
+- Driving the robot
+- Controlling mechanisms
+- Operating the intake or shooter
+
+### Autonomous
+
+Autonomous programs run without driver input.
+
+```java
+@Autonomous(name = "Auto")
+public class Auto extends LinearOpMode {
+
+}
+```
+
+Examples:
+
+- Following paths
+- Scoring game elements
+- Moving to specific locations
+
+## LinearOpMode
+
+`LinearOpMode` uses a sequential programming style.
+
+The robot executes code from top to bottom.
+
+```java
+@Override
+public void runOpMode() {
+
+    waitForStart();
+
+    while (opModeIsActive()) {
+
+    }
+}
+```
+
+### runOpMode()
+
+This is where your robot code goes.
+
+```java
+public void runOpMode() {
+
+}
+```
+
+### waitForStart()
+
+Pauses your program until the driver presses start.
+
+```java
+waitForStart();
+```
+
+### opModeIsActive()
+
+Checks whether the OpMode is currently running.
+
+```java
+while (opModeIsActive()) {
+
+}
+```
+
+## OpMode
+
+`OpMode` uses an event-loop style.
+
+Instead of one long program, the SDK repeatedly calls your methods.
+
+```java
+@TeleOp
+public class Example extends OpMode {
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void loop() {
+
+    }
+}
+```
+
+### init()
+
+Runs once when the OpMode starts.
+
+Used for:
+
+- Hardware initialization
+- Setting variables
+- Preparing the robot
+
+### loop()
+
+Runs repeatedly while the OpMode is active.
+
+Used for:
+
+- Reading gamepads
+- Controlling motors
+- Updating mechanisms
+
+## LinearOpMode vs OpMode
+
+| LinearOpMode          | OpMode                       |
+| --------------------- | ---------------------------- |
+| Sequential code       | Event-based code             |
+| Uses `runOpMode()`    | Uses `init()` and `loop()`   |
+| Easier for beginners  | More advanced                |
+| Common for autonomous | Common for TeleOp frameworks |
+
+Most beginners should start with `LinearOpMode`.
+
+## Utility OpModes (Coming Soon!)
+
+Introduced in SDK version 11.2, Utility OpModes are programs used for testing and debugging.
+
+## Running an OpMode
+
+To run your program:
+
+1. Build the project in Android Studio.
+2. Upload the code to the Control Hub.
+3. Open the Driver Station app.
+4. Select your OpMode.
+5. Press Start.
+
+## Key Takeaways
+
+- An OpMode is a robot program.
+- TeleOp uses driver input.
+- Autonomous runs without drivers.
+- `LinearOpMode` uses sequential programming.
+- `OpMode` uses an event loop.
+- Utility OpModes help test and debug robots.

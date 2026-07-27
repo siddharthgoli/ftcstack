@@ -1,35 +1,65 @@
 ---
 title: Enums
-description: Represent robot modes and states with readable named values.
+description: Represent a fixed set of values.
 ---
 
-# Enums
+An **enum** represents a fixed list of constants.
 
-Enums are named sets of values. They are useful in FTC for robot states, alliance colors, mechanism modes, and autonomous routines.
+Instead of using strings or numbers, enums make your code easier to read and less error-prone.
 
-## FTC example
+## Creating an Enum
 
 ```java
-public enum IntakeState {
-    OFF,
-    INTAKING,
-    HOLDING,
-    OUTTAKING
+public enum Alliance {
+    RED,
+    BLUE
 }
 ```
 
-## Why they help
+## Using an Enum
 
-- They make state names readable.
-- They reduce magic numbers and fragile string comparisons.
-- They simplify state machine code.
+```java
+Alliance alliance = Alliance.RED;
+```
 
-## Common mistakes
+## switch Statements
 
-- Using strings when an enum would be safer.
-- Packing too much logic into the enum itself.
-- Creating one giant enum for unrelated robot concepts.
+Enums work well with `switch`.
 
-## FTC connection
+```java
+switch (alliance) {
+    case RED:
+        System.out.println("Red");
+        break;
 
-Enums are a clean way to describe the robot’s current mode when different code paths depend on that mode.
+    case BLUE:
+        System.out.println("Blue");
+        break;
+}
+```
+
+## FTC Example
+
+Enums are commonly used for robot states.
+
+```java
+public enum IntakeState {
+    INTAKING,
+    HOLDING,
+    OUTTAKING,
+    STOPPED
+}
+```
+
+```java
+IntakeState state = IntakeState.INTAKING;
+```
+
+This is much clearer than using numbers like `0`, `1`, `2`, and `3`.
+
+## Key Takeaways
+
+- Enums define a fixed set of values.
+- They improve readability.
+- They reduce bugs caused by invalid values.
+- They work especially well with `switch` statements.

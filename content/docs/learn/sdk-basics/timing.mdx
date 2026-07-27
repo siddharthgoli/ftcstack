@@ -1,0 +1,145 @@
+---
+title: Timing
+description: Control when actions happen in your robot code.
+---
+
+Timing is important when programming robot actions.
+
+Examples:
+
+- Waiting for a mechanism to move
+- Adding delays between actions
+- Running actions for a specific amount of time
+- Creating autonomous sequences
+
+## sleep()
+
+`Thread.sleep()` pauses the current thread.
+
+Example:
+
+```java
+sleep(1000);
+```
+
+This waits for:
+
+```
+1000 milliseconds = 1 second
+```
+
+Example:
+
+```java
+claw.open();
+
+sleep(500);
+
+claw.close();
+```
+
+## Problems with sleep()
+
+Although useful, `sleep()` blocks your program.
+
+During a sleep:
+
+- The robot does not run other code
+- Inputs are not checked
+- Updates may be delayed
+
+Avoid using long sleeps in TeleOp programs.
+
+## ElapsedTime
+
+`ElapsedTime` tracks how much time has passed.
+
+Create a timer:
+
+```java
+ElapsedTime timer = new ElapsedTime();
+```
+
+Reset it:
+
+```java
+timer.reset();
+```
+
+Read the time:
+
+```java
+double time = timer.seconds();
+```
+
+Example:
+
+```java
+timer.reset();
+
+while (opModeIsActive()) {
+
+    if (timer.seconds() > 2) {
+        intake.stop();
+    }
+
+}
+```
+
+## Timers in Autonomous
+
+Timers are often used for sequencing actions.
+
+Example:
+
+```java
+if (timer.seconds() > 5) {
+    shooter.start();
+}
+```
+
+## State Machines
+
+Advanced FTC code often uses timers with states.
+
+Example:
+
+```text
+START
+ ↓
+MOVE_ARM
+ ↓
+WAIT
+ ↓
+DROP_OBJECT
+```
+
+Each state performs an action when certain conditions are met.
+
+## Avoid Blocking Code
+
+Bad:
+
+```java
+sleep(5000);
+```
+
+The robot does nothing for five seconds.
+
+Better:
+
+```java
+if (timer.seconds() > 5) {
+    continueAction();
+}
+```
+
+The program can continue running while waiting.
+
+## Key Takeaways
+
+- Timing controls when actions happen.
+- `sleep()` pauses your program.
+- `ElapsedTime` tracks time without blocking.
+- Timers are useful for autonomous and state machines.
+- Avoid long blocking delays.

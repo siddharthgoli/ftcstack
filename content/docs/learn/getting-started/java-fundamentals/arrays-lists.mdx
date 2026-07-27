@@ -1,0 +1,82 @@
+---
+title: Collections
+description: Store and work with multiple values.
+---
+
+## Arrays
+
+Arrays have a fixed size.
+
+```java
+int[] numbers = {1, 2, 3, 4};
+```
+
+Access an element using its index.
+
+```java
+System.out.println(numbers[0]);
+```
+
+Indexes start at **0**.
+
+## ArrayLists
+
+An `ArrayList` can grow or shrink as needed.
+
+```java
+ArrayList<String> names = new ArrayList<>();
+```
+
+Add values:
+
+```java
+names.add("Alex");
+names.add("Sam");
+```
+
+Access values:
+
+```java
+System.out.println(names.get(0));
+```
+
+Remove values:
+
+```java
+names.remove(0);
+```
+
+## Lists
+
+You'll often declare an `ArrayList` using the `List` interface.
+
+```java
+List<String> names = new ArrayList<>();
+```
+
+This makes it easier to switch to a different list implementation later.
+
+## Looping Through a Collection
+
+```java
+for (String name : names) {
+    System.out.println(name);
+}
+```
+
+## FTC Example
+
+You may store motors in a list to perform the same action on all of them.
+
+```java
+for (DcMotor motor : driveMotors) {
+    motor.setPower(0);
+}
+```
+
+## Key Takeaways
+
+- Arrays have a fixed size.
+- ArrayLists can change size.
+- Lists store groups of related objects.
+- Use loops to process collections efficiently.

@@ -1,5 +1,9 @@
 {
-    "pages": ["installing-android-studio", "ftcrobotcontroller"],
+    "pages": [
+        "java-fundamentals",
+        "installing-android-studio",
+        "ftcrobotcontroller"
+    ],
     "root": false,
     "title": "Getting Started",
     "description": "Getting Started"

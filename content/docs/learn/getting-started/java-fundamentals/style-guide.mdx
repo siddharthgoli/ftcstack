@@ -1,0 +1,183 @@
+---
+title: Java Style Guide
+description: Write clean, readable Java code.
+---
+
+Good code is easy to read, easy to understand, and easy to maintain. Following a consistent style makes your code easier for both you and your teammates.
+
+## Naming
+
+Use descriptive names.
+
+### Variables and Methods
+
+Use **camelCase**.
+
+```java
+double drivePower;
+int currentPosition;
+
+void openClaw() {
+
+}
+```
+
+### Classes
+
+Use **PascalCase**.
+
+```java
+public class IntakeSubsystem {
+
+}
+```
+
+### Constants
+
+Use **UPPER_SNAKE_CASE**.
+
+```java
+public static final double MAX_POWER = 1.0;
+```
+
+## Indentation
+
+Indent code inside braces.
+
+```java
+if (gamepad1.a) {
+    intake.start();
+}
+```
+
+Avoid inconsistent indentation.
+
+```java
+if (gamepad1.a) {
+intake.start();
+}
+```
+
+## Braces
+
+Always use braces, even for a single statement.
+
+Good:
+
+```java
+if (ready) {
+    shoot();
+}
+```
+
+Avoid:
+
+```java
+if (ready)
+    shoot();
+```
+
+## Keep Methods Small
+
+Each method should do one job.
+
+Good:
+
+```java
+updateDrive();
+updateIntake();
+updateLift();
+```
+
+Instead of one large method that does everything.
+
+## Use Comments Sparingly
+
+Comments should explain **why**, not **what**.
+
+Good:
+
+```java
+// Prevent the arm from exceeding its limit.
+```
+
+Avoid:
+
+```java
+// Set motor power.
+motor.setPower(1.0);
+```
+
+The code already explains what it's doing.
+
+## Avoid Magic Numbers
+
+Instead of writing numbers directly, use constants.
+
+Avoid:
+
+```java
+motor.setPower(0.75);
+```
+
+Better:
+
+```java
+public static final double DRIVE_SPEED = 0.75;
+
+motor.setPower(DRIVE_SPEED);
+```
+
+## Keep Formatting Consistent
+
+Use spaces around operators.
+
+```java
+int total = left + right;
+```
+
+Not:
+
+```java
+int total=left+right;
+```
+
+## Organize Your Classes
+
+A common order is:
+
+1. Constants
+2. Fields
+3. Constructors
+4. Public methods
+5. Private helper methods
+
+## Example
+
+```java
+public class Intake {
+
+    private final DcMotor motor;
+
+    public Intake(DcMotor motor) {
+        this.motor = motor;
+    }
+
+    public void start() {
+        motor.setPower(1.0);
+    }
+
+    public void stop() {
+        motor.setPower(0.0);
+    }
+}
+```
+
+## Key Takeaways
+
+- Use descriptive names.
+- Follow Java naming conventions.
+- Always use braces.
+- Keep methods focused on one task.
+- Replace magic numbers with constants.
+- Write readable, maintainable code.
