@@ -78,30 +78,6 @@ leftMotor.setPower(drive + turn);
 rightMotor.setPower(drive - turn);
 ```
 
-## Button Presses vs Holding
-
-A button check runs continuously.
-
-```java
-if (gamepad1.a) {
-    claw.open();
-}
-```
-
-This runs every loop while the button is held.
-
-For actions that happen once, use a toggle system.
-
-Example:
-
-```java
-if (gamepad1.a && !previousA) {
-    claw.toggle();
-}
-
-previousA = gamepad1.a;
-```
-
 ## Deadzones
 
 Joysticks may not return exactly zero.

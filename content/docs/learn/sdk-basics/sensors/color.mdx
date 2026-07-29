@@ -1,0 +1,110 @@
+---
+title: Color Sensors
+description: Colors, brightness, and nearby objects.
+---
+
+## What is a Color Sensor?
+
+A color sensor measures the amount of **red**, **green**, and **blue** light reflected from an object. By comparing these values against predefined thresholds, your robot can determine what color an object is.
+
+Most color sensors also report an **alpha** value, which represents the overall light intensity reflected back to the sensor.
+
+FTC teams commonly use the **REV Color Sensor V3**, which also includes a short-range distance sensor.
+
+## Common Uses
+
+- Detecting game piece colors
+- Determining if a game piece is present
+- Line following
+- Autonomous decision making
+- Sorting game pieces
+
+## Initializing a Color Sensor
+
+First, retrieve the sensor from the hardware map.
+
+```java
+ColorSensor colorSensor;
+
+colorSensor = hardwareMap.get(ColorSensor.class, "color_sensor");
+```
+
+## Enabling the LED
+
+Always enable the sensor's built-in LED before reading color values. The LED provides consistent lighting and helps reduce inaccuracies caused by changing ambient light.
+
+```java
+colorSensor.enableLed(true);
+```
+
+## Reading Color Values
+
+A color sensor returns four values ranging from **0 to 255**.
+
+```java
+int red = colorSensor.red();
+int green = colorSensor.green();
+int blue = colorSensor.blue();
+int alpha = colorSensor.alpha();
+```
+
+| Value     | Description                                                         |
+| --------- | ------------------------------------------------------------------- |
+| `red()`   | Amount of red detected                                              |
+| `green()` | Amount of green detected                                            |
+| `blue()`  | Amount of blue detected                                             |
+| `alpha()` | Overall brightness (0 = transparent/dark, 255 = very bright/opaque) |
+
+## Reading an ARGB Value
+
+You can also retrieve a single packed ARGB color value.
+
+```java
+int argb = colorSensor.argb();
+```
+
+This combines the alpha, red, green, and blue values into one integer.
+
+## Using the REV Color Sensor V3
+
+The REV Color Sensor V3 includes all of the standard color sensing features while also providing a built-in **short-range distance sensor**.
+
+Initialize it using the `RevColorSensorV3` class.
+
+```java
+RevColorSensorV3 colorSensorV3 =
+        (RevColorSensorV3) hardwareMap.colorSensor.get("colorV3");
+```
+
+### Reading Distance
+
+The V3 sensor can detect whether an object is directly in front of it.
+
+```java
+double distance = colorSensorV3.getDistance(DistanceUnit.CM);
+```
+
+The distance sensor is effective from approximately **1 cm to 10 cm**.
+
+NOTE:
+The V3's distance sensor is best used to determine **whether an object is present**, not to accurately measure the distance between your robot and field elements. For longer-range measurements, use a dedicated Time of Flight distance sensor.
+
+## Color Thresholding
+
+Instead of checking for exact color values, compare the readings against thresholds.
+
+```java
+if (colorSensor.red() > 150 && colorSensor.blue() < 80) {
+    telemetry.addLine("Red Object");
+}
+```
+
+Thresholds should be determined by testing with your actual game pieces under the lighting conditions used during competition.
+
+## Best Practices
+
+- Enable the LED before taking readings.
+- Mount the sensor close to the object being detected.
+- Use thresholds instead of exact values.
+- Test under different lighting conditions.
+- If using the REV Color Sensor V3, use its distance sensor to detect object presence rather than precise distance.

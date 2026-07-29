@@ -1,0 +1,224 @@
+---
+title: Lynx Modules
+description: Bulk reads, battery monitoring, and improved robot performance.
+---
+
+## What is a Lynx Module?
+
+A **Lynx Module** represents a **REV Control Hub** or **REV Expansion Hub** in your robot code. Every hub connected to your robot has a corresponding `LynxModule` object that allows you to configure hub-wide settings and access hardware information.
+
+The most important feature of the `LynxModule` API is **bulk reading**, which can significantly improve your robot's loop time.
+
+## Initializing Lynx Modules
+
+It's a good idea to initialize your Lynx Modules before initializing the rest of your hardware.
+
+```java
+List<LynxModule> allHubs = hardwareMap.getAll(LynxModule.class);
+```
+
+You'll use this list throughout the rest of the page.
+
+---
+
+## What are Bulk Reads?
+
+Normally, every time your program reads a motor encoder or digital sensor, the Control Hub must communicate with the hardware.
+
+For example:
+
+```java
+int left = leftMotor.getCurrentPosition();
+int right = rightMotor.getCurrentPosition();
+```
+
+Without bulk reads, each call requires its own communication with the hub.
+
+A **bulk read** requests **all non-I2C sensor data from a hub at once**. Once the data is cached, subsequent reads use the cached values instead of sending additional commands.
+
+Because a bulk read takes about the same amount of time as a single hardware read, reading multiple sensors becomes much faster.
+
+> [!NOTE]
+> Bulk reads only apply to hardware connected to the same hub and do **not** include I2C devices such as color sensors or distance sensors.
+
+---
+
+## Bulk Caching Modes
+
+The FTC SDK provides three bulk caching modes.
+
+| Mode     | Recommended | Description                              |
+| -------- | ----------- | ---------------------------------------- |
+| `OFF`    | ❌ No       | Bulk reads are disabled.                 |
+| `AUTO`   | ✅ Yes      | The SDK automatically manages the cache. |
+| `MANUAL` | ⚠️ Advanced | You manually clear the cache each loop.  |
+
+For most teams, **AUTO** is the best choice.
+
+---
+
+## OFF Mode
+
+OFF mode disables bulk caching entirely.
+
+```java
+for (LynxModule hub : allHubs) {
+    hub.setBulkCachingMode(LynxModule.BulkCachingMode.OFF);
+}
+```
+
+> [!WARNING]
+> We do **not** recommend using OFF mode. Without bulk reads, every hardware read requires a separate communication with the hub, resulting in slower loop times.
+
+---
+
+## AUTO Mode
+
+AUTO mode is the easiest and safest way to use bulk reads.
+
+```java
+for (LynxModule hub : allHubs) {
+    hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+}
+```
+
+During each loop, the first hardware read performs a bulk read. Additional reads from the cache are fast.
+
+```java
+while (opModeIsActive()) {
+
+    int left = leftMotor.getCurrentPosition();
+    int right = rightMotor.getCurrentPosition();
+    int front = frontEncoder.getCurrentPosition();
+
+}
+```
+
+### A Small Drawback
+
+If you read the **same hardware value twice**, AUTO mode performs another bulk read.
+
+```java
+int left1 = leftMotor.getCurrentPosition();
+int left2 = leftMotor.getCurrentPosition();
+```
+
+While this isn't ideal, AUTO mode is still recommended because it's simple and difficult to misuse.
+
+---
+
+## MANUAL Mode
+
+MANUAL mode gives you complete control over the bulk cache.
+
+```java
+for (LynxModule hub : allHubs) {
+    hub.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
+}
+```
+
+At the **start of every loop**, clear the cache.
+
+```java
+while (opModeIsActive()) {
+
+    for (LynxModule hub : allHubs) {
+        hub.clearBulkCache();
+    }
+
+    int left1 = leftMotor.getCurrentPosition();
+    int left2 = leftMotor.getCurrentPosition();
+
+}
+```
+
+Even though `getCurrentPosition()` is called twice, only **one** bulk read occurs because both values come from the same cached data.
+
+> [!WARNING]
+> If you forget to clear the cache, your program will continue reading old sensor values. This can cause your robot to behave unpredictably.
+
+---
+
+## Clearing the Cache Inside Other Loops
+
+A common mistake is only clearing the cache in the main OpMode loop.
+
+If you have additional `while` or `for` loops, you should clear the cache there as well.
+
+```java
+while (timer.milliseconds() < 2000) {
+
+    for (LynxModule hub : allHubs) {
+        hub.clearBulkCache();
+    }
+
+    doSomething();
+}
+```
+
+If `doSomething()` also contains loops, those loops should clear the cache as well.
+
+---
+
+## Choosing Between AUTO and MANUAL
+
+| AUTO                          | MANUAL                            |
+| ----------------------------- | --------------------------------- |
+| Easy to use                   | Maximum performance               |
+| Safe                          | Easy to misuse                    |
+| Automatically refreshes cache | You must clear the cache yourself |
+| Recommended for most teams    | Best for experienced programmers  |
+
+Unless you're optimizing every millisecond of your loop time, **AUTO mode is the recommended choice**.
+
+---
+
+## Measuring Battery Voltage
+
+The Lynx Module can report the input voltage supplied by your robot battery.
+
+```java
+for (LynxModule hub : allHubs) {
+
+    double voltage = hub.getInputVoltage(VoltageUnit.VOLTS);
+
+}
+```
+
+Monitoring battery voltage can help with:
+
+- Voltage compensation
+- Battery health
+- Driver telemetry
+- Debugging robot performance
+
+---
+
+## Measuring Current
+
+You can also measure the total current draw of each hub.
+
+```java
+for (LynxModule hub : allHubs) {
+
+    double current = hub.getCurrent(CurrentUnit.AMPS);
+
+}
+```
+
+Current monitoring is useful for:
+
+- Detecting stalled motors
+- Finding mechanical binding
+- Monitoring power usage
+- Debugging electrical problems
+
+---
+
+## Best Practices
+
+- Initialize your Lynx Modules before the rest of your hardware.
+- Enable **AUTO** bulk caching unless you have a reason to use MANUAL.
+- If using MANUAL mode, clear the cache at the start of **every** control loop.
+- Remember that bulk reads do **not** include I2C devices.
+- Monitor voltage and current through the Lynx Module for easier debugging.

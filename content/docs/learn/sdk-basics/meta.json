@@ -1,7 +1,7 @@
 {
     "pages": [
         "project-structure",
-        "your-first-opmode",
+        "opmodes",
         "telemetry",
         "gamepads",
         "hardwaremap",
@@ -9,7 +9,8 @@
         "servos",
         "sensors",
         "timing",
-        "robot-config"
+        "robot-config",
+        "lynx-modules"
     ],
     "root": false,
     "title": "SDK Basics",

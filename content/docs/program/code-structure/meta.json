@@ -1,0 +1,6 @@
+{
+    "pages": ["index"],
+    "root": false,
+    "title": "Code Structure",
+    "description": "Make maintainable code"
+}

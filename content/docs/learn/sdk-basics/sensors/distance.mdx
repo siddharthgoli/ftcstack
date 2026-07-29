@@ -1,0 +1,73 @@
+---
+title: Distance Sensors
+description: Measure how far objects are from your robot.
+---
+
+## What is a Distance Sensor?
+
+A distance sensor measures how far an object is from the robot. FTC teams commonly use **Time of Flight (ToF)** sensors, which determine distance by measuring how long it takes light to bounce back from an object.
+
+These sensors are fast, accurate, and easy to integrate into autonomous routines.
+
+## Common Distance Sensors
+
+- REV 2m Distance Sensor
+- goBILDA Distance Sensor
+- Other compatible I2C ToF sensors
+
+## Common Uses
+
+- Wall alignment
+- Automatic parking
+- Detecting game pieces
+- Aligning with scoring locations
+- Detecting obstacles
+
+## Connecting the Sensor
+
+Most distance sensors connect through an **I2C port** on the Control Hub or Expansion Hub.
+
+## Reading Distance
+
+The FTC SDK returns measurements in several units.
+
+```java
+DistanceSensor sensor = hardwareMap.get(DistanceSensor.class, "distance");
+
+double inches = sensor.getDistance(DistanceUnit.INCH);
+double centimeters = sensor.getDistance(DistanceUnit.CM);
+```
+
+Available units include:
+
+- Inches
+- Centimeters
+- Millimeters
+- Meters
+
+## Example
+
+```java
+if (sensor.getDistance(DistanceUnit.INCH) < 5) {
+    intake.stop();
+}
+```
+
+This example stops an intake when an object is within five inches.
+
+## Things to Keep in Mind
+
+Distance sensors work best when:
+
+- The object is directly in front of the sensor.
+- The target has a solid surface.
+- The sensor is mounted securely.
+
+Performance may decrease on reflective, transparent, or very dark surfaces.
+
+## Best Practices
+
+- Mount the sensor so it has a clear view.
+- Avoid blocking the sensor with robot parts.
+- Filter noisy readings if needed.
+- Always check for invalid readings.

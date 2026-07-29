@@ -1,0 +1,87 @@
+---
+title: IMU
+description: Learn how the Inertial Measurement Unit (IMU) works and how it is used in FTC.
+---
+
+## What is an IMU?
+
+An **Inertial Measurement Unit (IMU)** is a sensor that measures your robot's orientation and movement. In FTC, the IMU is most commonly used to determine the robot's **heading**, allowing your code to know which direction the robot is facing.
+
+Modern REV Control Hubs include a built-in IMU, so no additional hardware is required.
+
+## What Does It Measure?
+
+An IMU combines multiple sensors into one package.
+
+- **Gyroscope** measures rotational velocity.
+- **Accelerometer** measures linear acceleration.
+- Some IMUs also include a **magnetometer**, although the FTC SDK primarily uses the gyroscope and accelerometer.
+
+For most FTC applications, you'll mainly work with the robot's **yaw**, which represents its heading on the field.
+
+## Common Uses
+
+- Field-centric driving
+- Maintaining a heading during autonomous
+- Turning to a specific angle
+- Detecting robot tilt
+- Correcting drift while driving
+
+## Coordinate Axes
+
+The IMU reports rotation around three axes.
+
+| Axis | Rotation | Common Name           |
+| ---- | -------- | --------------------- |
+| X    | Roll     | Side-to-side tilt     |
+| Y    | Pitch    | Forward/backward tilt |
+| Z    | Yaw      | Robot heading         |
+
+Most FTC programs only need the **yaw** value.
+
+## Reading the IMU
+
+The FTC SDK allows you to read the robot's orientation at any time.
+
+```java
+YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+
+double heading = orientation.getYaw(AngleUnit.DEGREES);
+```
+
+The heading can also be requested in radians if needed.
+
+## Initializing the IMU
+
+Before using the IMU, initialize it in your OpMode.
+
+```java
+IMU.Parameters parameters = new IMU.Parameters(
+        new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD
+        )
+);
+
+imu = hardwareMap.get(IMU.class, "imu");
+imu.initialize(parameters);
+```
+
+The orientation values must match how your Control Hub is mounted on the robot.
+
+## Resetting the Heading
+
+Sometimes you'll want the robot's current direction to become zero.
+
+```java
+imu.resetYaw();
+```
+
+This is commonly done at the start of TeleOp.
+
+## Best Practices
+
+- Initialize the IMU once.
+- Reset yaw when appropriate.
+- Use degrees unless your math requires radians.
+- Verify the Control Hub orientation settings match your robot.

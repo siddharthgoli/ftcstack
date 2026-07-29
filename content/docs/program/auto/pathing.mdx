@@ -1,0 +1,216 @@
+---
+title: Pathing
+description: Learn about autonomous pathing libraries.
+---
+
+Writing an autonomous routine by manually controlling motors quickly becomes difficult.
+
+A simple routine might look like:
+
+```text
+Drive forward
+Turn
+Drive forward
+Score
+```
+
+However, this approach has several problems:
+
+- Small errors accumulate over time.
+- Movements are difficult to tune.
+- The robot cannot easily correct itself.
+- Complex paths become hard to manage.
+
+Modern FTC robots solve this problem by using **pathing libraries**.
+
+Pathing libraries allow teams to describe where the robot should go while the library handles the complex calculations required to move there.
+
+## What is Pathing?
+
+Pathing is the process of creating and following a planned route on the field.
+
+Instead of directly controlling motor power:
+
+```java
+motor.setPower(0.5);
+```
+
+you define a desired movement:
+
+```text
+Move from starting position
+to scoring position
+while maintaining heading
+```
+
+The pathing system determines:
+
+- Motor powers
+- Velocity
+- Acceleration
+- Corrections
+- Heading adjustments
+
+This allows the robot to follow smooth, repeatable autonomous routes.
+
+## Pathing Components
+
+Most FTC pathing systems rely on several important components.
+
+### Localization
+
+The robot needs to know where it is.
+
+Pathing libraries use localization systems such as:
+
+- Dead wheel odometry
+- Motor encoders
+- IMU measurements
+
+to estimate the robot's current pose.
+
+### Motion Control
+
+The robot needs to determine how to reach the target position.
+
+This involves:
+
+- PID control
+- Feedforward
+- Motion profiling
+- Error correction
+
+These systems adjust the robot's movement while it follows a path.
+
+### Paths and Trajectories
+
+A path describes where the robot should move.
+
+A path can include:
+
+- Starting position
+- Ending position
+- Waypoints
+- Heading
+- Velocity constraints
+
+More advanced systems can create smooth curves instead of requiring the robot to stop and turn between every movement.
+
+## Road Runner
+
+Roadrunner is one of the most widely used autonomous libraries in FTC.
+
+Road Runner focuses on generating accurate trajectories using:
+
+- Localization
+- Motion profiling
+- Trajectory generation
+- Feedback control
+
+Instead of manually tuning every movement, teams define trajectories and allow Road Runner to calculate the motion required.
+
+Example:
+
+```text
+Start Position
+
+      \
+       \
+        \
+         \
+      Target Position
+```
+
+The robot follows the generated trajectory while continuously correcting its position.
+
+### Road Runner Strengths
+
+Road Runner is commonly used because it provides:
+
+- Accurate trajectory following
+- Smooth acceleration and deceleration
+- Strong localization support
+- Extensive community resources
+
+It is especially popular for teams using:
+
+- Mecanum drivetrains
+- Dead wheel odometry
+- Advanced autonomous routines
+
+### Road Runner Resources
+
+Road Runner has extensive documentation covering installation, tuning, localization, and trajectory creation.
+
+Official resources:
+
+- https://learnroadrunner.com (Explanations for a lot of the theory)
+- https://rr.brott.dev/ (Official Documentation)
+
+## Pedro Pathing
+
+Pedro Pathing is another popular autonomous pathing library designed specifically for FTC.
+
+PedroPathing focuses on creating and following paths using concepts such as:
+
+- Bézier curves
+- Localization
+- PIDF control
+- Path following algorithms
+
+Instead of manually controlling every drivetrain movement, teams create paths and allow the follower to determine the required motor outputs.
+
+### PedroPathing Strengths
+
+PedroPathing is known for:
+
+- FTC-focused design
+- Smooth path following
+- Easy path visualization
+- Strong support for holonomic drivetrains
+
+It is commonly used by teams that want a flexible and intuitive way to create autonomous paths.
+
+### PedroPathing Resources
+
+PedroPathing provides official documentation covering installation, tuning, localization, and path creation.
+
+Official resource
+
+- https://pedropathing.com (Official Documentation)
+
+## Road Runner vs PedroPathing
+
+Both libraries solve the same general problem: helping robots move accurately during autonomous.
+
+The best choice depends on your team's preferences, drivetrain, and experience.
+
+|                 | Road Runner                        | PedroPathing                         |
+| --------------- | ---------------------------------- | ------------------------------------ |
+| Main focus      | Trajectory generation              | Path following                       |
+| Path style      | Trajectories                       | Paths and curves                     |
+| Motion planning | Strong motion profiling            | Strong path following                |
+| Localization    | Built-in support                   | Built-in support                     |
+| Best for        | Teams wanting precise trajectories | Teams wanting flexible path creation |
+| Community       | Large FTC community                | Growing FTC community                |
+
+Neither library is universally better. Both are capable of creating high-level autonomous routines when properly tuned.
+
+## Best Practices
+
+Regardless of the library you choose:
+
+- Tune your drivetrain before creating paths.
+- Ensure localization is accurate.
+- Test paths repeatedly.
+- Use telemetry to debug position errors.
+- Keep autonomous routines organized.
+- Avoid changing hardware after tuning whenever possible.
+
+A pathing library cannot compensate for inaccurate hardware measurements or poor localization.
+
+## What's Next?
+
+Pathing libraries combine localization, control theory, and motion planning to create accurate autonomous routines.
+
+With autonomous concepts covered, the next section focuses on building a maintainable FTC codebase using **subsystems, robot classes, utilities, and reusable code**.

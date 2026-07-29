@@ -1,0 +1,6 @@
+{
+    "pages": ["pid-movement", "localization-odometry", "pathing"],
+    "root": false,
+    "title": "Autonomous",
+    "description": "Autonomous"
+}
