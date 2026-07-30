@@ -1,5 +1,5 @@
 {
-    "pages": ["index"],
+    "pages": ["open-closed", "pid-control"],
     "root": false,
     "title": "Control Theory",
     "description": "Advanced control systems"

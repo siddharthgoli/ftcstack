@@ -1,0 +1,113 @@
+---
+title: Open vs Closed Loop Control
+description: Why feedback is important in robotics.
+---
+
+Control theory is the study of how systems can be controlled to achieve a desired outcome.
+
+In robotics, a controller determines how a robot should respond to achieve a goal.
+
+For example:
+
+- Move a lift to a certain height.
+- Drive to a specific location.
+- Maintain a flywheel speed.
+- Follow an autonomous path.
+
+The main difference between control systems is whether or not they use **feedback**.
+
+## Open-Loop Control
+
+An **open-loop control system** sends commands without checking whether the desired result was actually achieved.
+
+The controller assumes that the system behaves exactly as expected, with no way to compare the output with the desired result.
+
+### Example: Timed Motor Movement
+
+Imagine you want a lift to move upward.
+
+An open-loop solution might be:
+
+```java
+motor.setPower(1.0);
+sleep(500);
+motor.setPower(0);
+```
+
+However, this assumes:
+
+- The battery voltage is the same.
+- The lift has the same load.
+- The motor always moves at the same speed.
+
+However, real robots are not perfect. The lift may stop too high, too low, or at a different position each time because the controller never checks what actually happened.
+
+## Advantages of Open-Loop Control
+
+Open-loop systems are useful because they are simple, easy to implement, and computationally inexpensive. They are often sufficient for simple tasks where precision is not important.
+
+Examples:
+
+- Running an intake
+- Turning on a light
+- Setting a servo position
+
+## Closed-Loop Control
+
+A **closed-loop control system** uses feedback to compare the current state of the system with the desired state.
+
+The controller measures the error and adjusts its output to reduce that error.
+
+The controller continuously asks: "Am I where I want to be?"
+
+If the answer is no, it makes adjustments.
+
+### Example: Encoder-Based Lift
+
+A closed-loop lift controller might have:
+
+Target Position:
+
+```
+2000 encoder ticks
+```
+
+Current Position:
+
+```
+1500 encoder ticks
+```
+
+Error:
+
+```
+2000 - 1500 = 500 ticks
+```
+
+The controller uses this error to determine motor power.
+
+As the lift gets closer to the target:
+
+- Error decreases.
+- Motor power decreases.
+- The mechanism slows down.
+
+Eventually, the lift reaches the target position and stops.
+
+## Open Loop vs Closed Loop
+
+| Open Loop               | Closed Loop                   |
+| ----------------------- | ----------------------------- |
+| No feedback             | Uses feedback                 |
+| Simple                  | More complex                  |
+| Less accurate           | More accurate                 |
+| Cannot correct errors   | Corrects errors automatically |
+| Good for simple actions | Good for precision control    |
+
+## Why Robotics Uses Feedback
+
+Robots operate in the real world, where conditions constantly change.
+
+Factors like battery voltage, friction, weight, mechanical wear, and field conditions make perfect prediction impossible.
+
+Feedback allows robots to adapt to these changes. This is why almost every competitive FTC robot uses some form of closed-loop control.

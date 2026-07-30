@@ -9,80 +9,78 @@ import {
     Gauge,
     GitBranch,
     SearchCode,
-    ShieldCheck,
     Sparkles,
     Target,
-    Wrench,
 } from "lucide-react";
 
 const learningPaths = [
     {
-        title: "Beginner path",
+        title: "Beginner Path",
         description:
-            "Start with FTC, Java, and the SDK before writing your first robot loop.",
-        href: "/docs/learn",
+            "Learn FTC programming fundamentals, from Java and the SDK to your first working robot program.",
+        href: "/docs/learn/getting-started",
         accent: "from-sky-400/20 to-cyan-400/5",
         icon: BookOpenText,
         steps: [
-            "What FTC is",
-            "Java basics",
-            "Robot Controller setup",
+            "FTC fundamentals",
+            "Java essentials",
+            "SDK setup",
             "Your first OpMode",
         ],
     },
     {
-        title: "Team software path",
+        title: "Programming Path",
         description:
-            "Learn how competitive teams structure code for a whole season.",
-        href: "/docs/programming",
+            "Build software like a competitive FTC team with organized, maintainable robot code.",
+        href: "/docs/programming/teleop",
         accent: "from-emerald-400/20 to-teal-400/5",
         icon: Blocks,
         steps: [
-            "Architecture",
-            "TeleOp design",
-            "Autonomous systems",
-            "Debugging and tuning",
+            "Code architecture",
+            "Subsystem design",
+            "TeleOp systems",
+            "Autonomous structure",
         ],
     },
     {
-        title: "Advanced systems path",
+        title: "Advanced Path",
         description:
-            "Move into control theory, vision, and reusable templates once the basics are solid.",
-        href: "/docs/conntrol-theory",
+            "Explore the systems that separate functional robots from competition-ready robots.",
+        href: "/docs/control-theory/open-closed",
         accent: "from-amber-400/20 to-orange-400/5",
         icon: BrainCircuit,
         steps: [
-            "PID and feedforward",
-            "OpenCV pipelines",
-            "Pathing templates",
-            "Performance work",
+            "PID control",
+            "Feedforward",
+            "Vision pipelines",
+            "Motion planning",
         ],
     },
 ];
 
 const featureHighlights = [
     {
-        title: "FTC-first explanations",
+        title: "FTC-focused learning",
         description:
-            "Every concept is framed around how real robots behave on the field.",
+            "Concepts are explained through real robot applications, not abstract examples.",
         icon: Target,
     },
     {
-        title: "Open-source engineering habits",
+        title: "Engineering practices",
         description:
-            "Versioning, structure, naming, and collaboration are taught as team skills.",
+            "Learn version control, architecture, naming conventions, and team workflows.",
         icon: GitBranch,
     },
     {
-        title: "Practical debugging guidance",
+        title: "Debugging tools",
         description:
-            "Use telemetry, dashboard tooling, and timing measurements to find issues fast.",
+            "Use telemetry, dashboards, logs, and measurements to diagnose problems.",
         icon: SearchCode,
     },
     {
-        title: "Reusable implementation snippets",
+        title: "Reusable code",
         description:
-            "Copyable templates for drivetrains, mechanisms, autonomous, and utilities.",
+            "Build a library of patterns for mechanisms, autonomous, and utilities.",
         icon: Code2,
     },
 ];
@@ -90,123 +88,107 @@ const featureHighlights = [
 const sectionCards = [
     {
         title: "Learn",
-        description:
-            "The beginner curriculum: FTC, Java, and SDK fundamentals in sequence.",
-        href: "/docs/learn",
+        description: "Start with FTC concepts, Java, and SDK fundamentals.",
+        href: "/docs/learn/getting-started",
         icon: Sparkles,
     },
     {
-        title: "Program",
-        description:
-            "How competitive FTC teams design maintainable robot codebases.",
-        href: "/docs/program",
+        title: "Programming",
+        description: "Learn how competitive teams structure robot software.",
+        href: "/docs/programming/teleop",
         icon: Cpu,
     },
     {
         title: "Control Theory",
-        description: "Feedback, motion, and tuning for real robot behavior.",
-        href: "/docs/conntrol-theory",
+        description: "Understand feedback systems, tuning, and robot motion.",
+        href: "/docs/control-theory/open-closed",
         icon: Gauge,
     },
-    {
-        title: "Vision",
-        description:
-            "FTC camera pipelines, detection systems, and real-world debugging.",
-        href: "/docs/vision",
-        icon: ShieldCheck,
-    },
-    {
-        title: "Snippets",
-        description:
-            "Implementation templates and patterns you can drop into a codebase.",
-        href: "/docs/snippets",
-        icon: Wrench,
-    },
+    // {
+    //     title: "Vision",
+    //     description:
+    //         "FTC camera pipelines, detection systems, and real-world debugging.",
+    //     href: "/docs/vision",
+    //     icon: ShieldCheck,
+    // },
+    // {
+    //     title: "Snippets",
+    //     description:
+    //         "Implementation templates and patterns you can drop into a codebase.",
+    //     href: "/docs/snippets",
+    //     icon: Wrench,
+    // },
     {
         title: "Reference",
-        description:
-            "Quick lookup for libraries, tools, documentation, and glossary terms.",
-        href: "/docs/reference",
+        description: "Libraries, tools, resources, and quick documentation.",
+        href: "/docs/reference/resources",
         icon: BookOpenText,
     },
 ];
 
 export default function HomePage() {
     return (
-        <div className="relative flex-1 overflow-hidden">
+        <main className="relative flex-1 overflow-hidden">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.15),transparent_30%),radial-gradient(circle_at_left_top,rgba(14,165,233,0.18),transparent_28%)]" />
-            <section className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 py-16 md:px-10 lg:px-12 lg:py-24">
-                <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+
+            <section className="mx-auto flex max-w-7xl flex-col gap-20 px-6 py-16 md:px-10 lg:px-12 lg:py-24">
+                <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
                     <div className="space-y-8">
-                        {/* <div className="inline-flex items-center gap-2 rounded-full border border-fd-border bg-fd-card/80 px-4 py-2 text-sm text-fd-muted-foreground shadow-sm backdrop-blur">
-                            <Sparkles className="h-4 w-4 text-sky-400" />
-                            Competitive FTC programming, organized like a real
-                            handbook
-                        </div> */}
                         <div className="space-y-5">
-                            <h1 className="max-w-3xl text-5xl font-semibold tracking-tight text-balance text-fd-foreground md:text-6xl lg:text-7xl">
-                                Build robot software that holds up in a season,
-                                not just in a demo.
+                            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-balance text-fd-foreground md:text-6xl lg:text-7xl">
+                                Learn to program FTC robots like a competitive
+                                software team.
                             </h1>
+
                             <p className="max-w-2xl text-lg leading-8 text-fd-muted-foreground md:text-xl">
-                                FTC Code Companion is a professional FTC
-                                programming curriculum for teams that want
-                                reliable TeleOp, strong autonomous systems, and
-                                a codebase the whole roster can maintain.
+                                FTC Code Companion is a complete programming
+                                curriculum covering Java, the FTC SDK, robot
+                                architecture, autonomous systems, control
+                                theory, and vision.
                             </p>
                         </div>
+
                         <div className="flex flex-wrap gap-3">
                             <Link
                                 href="/docs"
                                 className="inline-flex items-center gap-2 rounded-full bg-fd-primary px-5 py-3 text-sm font-medium text-fd-primary-foreground transition-transform hover:-translate-y-0.5"
                             >
-                                Start reading <ArrowRight className="h-4 w-4" />
-                            </Link>
-                            <Link
-                                href="/docs/learn"
-                                className="inline-flex items-center gap-2 rounded-full border border-fd-border bg-fd-card px-5 py-3 text-sm font-medium text-fd-foreground transition-colors hover:bg-fd-accent/10"
-                            >
-                                Beginner path
+                                Start Learning
+                                <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
-                        <p className="max-w-2xl text-sm leading-6 text-fd-muted-foreground">
-                            Designed for students, mentors, and teams who need a
-                            practical engineering reference through the full
-                            competition season.
-                        </p>
                     </div>
 
                     <div className="relative">
                         <div className="cc101-glow absolute inset-0 -z-10 rounded-[2rem] blur-3xl" />
+
                         <div className="cc101-panel rounded-[2rem] p-6 md:p-8">
-                            <div className="mb-6 flex items-center justify-between text-sm text-fd-muted-foreground">
-                                <span>Season-ready curriculum</span>
-                                <span>FTC • Java • Control • Vision</span>
+                            <div className="mb-6 flex justify-between text-sm text-fd-muted-foreground">
+                                <span>FTC Code Companion</span>
+                                <span>Java • FTC SDK • Control</span>
                             </div>
-                            <div className="grid gap-4 md:grid-cols-2">
+
+                            <div className="grid gap-4 sm:grid-cols-2">
                                 {[
                                     [
-                                        "Learn the stack",
-                                        "FTC, Java, and Robot Controller fundamentals.",
+                                        "Learn",
+                                        "Understand FTC, Java, and the SDK.",
                                     ],
                                     [
-                                        "Design the codebase",
-                                        "Subsystems, state machines, and naming patterns.",
+                                        "Build",
+                                        "Create organized robot software.",
                                     ],
+                                    ["Tune", "Improve motion and mechanisms."],
                                     [
-                                        "Tune the robot",
-                                        "PID, feedforward, localization, and motion.",
-                                    ],
-                                    [
-                                        "Ship faster",
-                                        "Debugging, dashboard work, and reusable snippets.",
+                                        "Compete",
+                                        "Ship reliable season-ready code.",
                                     ],
                                 ].map(([title, description]) => (
                                     <div
                                         key={title}
                                         className="rounded-2xl border border-fd-border bg-fd-card/80 p-4"
                                     >
-                                        <p className="text-sm font-medium text-fd-foreground">
+                                        <p className="font-medium text-fd-foreground">
                                             {title}
                                         </p>
                                         <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
@@ -219,7 +201,7 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-3">
+                <div className="grid gap-5 md:grid-cols-3">
                     {learningPaths.map((path) => {
                         const Icon = path.icon;
 
@@ -227,19 +209,22 @@ export default function HomePage() {
                             <Link
                                 key={path.title}
                                 href={path.href}
-                                className="group rounded-[1.5rem] border border-fd-border bg-fd-card/85 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-xl"
+                                className="group rounded-[1.5rem] border border-fd-border bg-fd-card/80 p-6 transition-all hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-xl"
                             >
                                 <div
                                     className={`rounded-2xl bg-gradient-to-br ${path.accent} p-4`}
                                 >
                                     <Icon className="h-5 w-5 text-sky-300" />
                                 </div>
+
                                 <h2 className="mt-5 text-xl font-semibold text-fd-foreground">
                                     {path.title}
                                 </h2>
+
                                 <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
                                     {path.description}
                                 </p>
+
                                 <ul className="mt-5 space-y-2 text-sm text-fd-muted-foreground">
                                     {path.steps.map((step) => (
                                         <li
@@ -267,9 +252,11 @@ export default function HomePage() {
                                     className="rounded-[1.35rem] border border-fd-border bg-fd-card/80 p-5"
                                 >
                                     <Icon className="h-5 w-5 text-sky-400" />
-                                    <h3 className="mt-4 text-base font-semibold text-fd-foreground">
+
+                                    <h3 className="mt-4 font-semibold text-fd-foreground">
                                         {feature.title}
                                     </h3>
+
                                     <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
                                         {feature.description}
                                     </p>
@@ -280,16 +267,19 @@ export default function HomePage() {
 
                     <div className="cc101-panel rounded-[1.75rem] p-6 md:p-8">
                         <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-400">
-                            Documentation map
+                            Documentation
                         </p>
+
                         <h2 className="mt-3 text-2xl font-semibold text-fd-foreground">
-                            The site is split by learning intent
+                            Everything organized by purpose
                         </h2>
+
                         <p className="mt-3 text-sm leading-7 text-fd-muted-foreground">
-                            Start in Learn, move into Programming once the
-                            basics are stable, and use Control Theory, Vision,
-                            Snippets, and Reference as the season demands.
+                            Follow the curriculum from beginner concepts to
+                            advanced systems, or jump directly to the reference
+                            material you need.
                         </p>
+
                         <div className="mt-6 grid gap-3 sm:grid-cols-2">
                             {sectionCards.map((section) => {
                                 const Icon = section.icon;
@@ -298,13 +288,15 @@ export default function HomePage() {
                                     <Link
                                         key={section.title}
                                         href={section.href}
-                                        className="rounded-2xl border border-fd-border bg-fd-card/80 p-4 transition-colors hover:border-sky-400/40 hover:bg-fd-accent/10"
+                                        className="rounded-2xl border border-fd-border bg-fd-card/80 p-4 hover:border-sky-400/40"
                                     >
                                         <Icon className="h-5 w-5 text-sky-400" />
-                                        <h3 className="mt-3 text-base font-semibold text-fd-foreground">
+
+                                        <h3 className="mt-3 font-semibold text-fd-foreground">
                                             {section.title}
                                         </h3>
-                                        <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
+
+                                        <p className="mt-2 text-sm text-fd-muted-foreground">
                                             {section.description}
                                         </p>
                                     </Link>
@@ -313,29 +305,7 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-
-                <div className="flex flex-col items-start justify-between gap-4 rounded-[1.75rem] border border-fd-border bg-fd-card/80 p-6 md:flex-row md:items-center md:p-8">
-                    <div>
-                        <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-400">
-                            Built for competition seasons
-                        </p>
-                        <h2 className="mt-2 text-2xl font-semibold text-fd-foreground">
-                            Use it as a handbook, not a quick start guide.
-                        </h2>
-                        <p className="mt-3 max-w-2xl text-sm leading-7 text-fd-muted-foreground">
-                            This is a documentation site for teams that need a
-                            working curriculum, a practical reference, and a
-                            place to align code style across multiple students.
-                        </p>
-                    </div>
-                    <Link
-                        href="/docs/reference"
-                        className="inline-flex items-center gap-2 rounded-full border border-fd-border bg-fd-primary px-5 py-3 text-sm font-medium text-fd-primary-foreground"
-                    >
-                        Open the reference <ArrowRight className="h-4 w-4" />
-                    </Link>
-                </div>
             </section>
-        </div>
+        </main>
     );
 }

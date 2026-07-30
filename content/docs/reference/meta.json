@@ -1,5 +1,5 @@
 {
-    "pages": ["index"],
+    "pages": ["resources", "libraries"],
     "root": false,
     "title": "Reference",
     "description": "Reference"
