@@ -1,0 +1,232 @@
+---
+title: OpenCV
+description: Use OpenCV to build custom computer vision pipelines for your FTC robot.
+---
+
+**OpenCV** is an open-source computer vision library used to process and analyze images.
+
+While AprilTags give you a ready-made way to detect a specific type of visual marker, OpenCV gives you the tools to build your own vision algorithms.
+
+For example, you could use OpenCV to:
+
+- Detect objects based on color
+- Find contours
+- Detect shapes
+- Track objects
+- Filter images
+- Detect edges
+- Measure object positions
+- Build custom object detectors
+
+Think of OpenCV as a **toolbox for computer vision**, rather than a single vision system.
+
+## How OpenCV works
+
+A typical OpenCV pipeline takes an image and processes it through several stages:
+
+```text
+Camera Image
+     ↓
+Preprocessing
+     ↓
+Filtering
+     ↓
+Detection
+     ↓
+Analysis
+     ↓
+Useful Data
+```
+
+For example, imagine you want to detect a yellow game element.
+
+Your pipeline could look like:
+
+```text
+Camera Image
+     ↓
+Convert to HSV
+     ↓
+Filter for yellow
+     ↓
+Find contours
+     ↓
+Remove small contours
+     ↓
+Find target
+     ↓
+Return its position
+```
+
+The final result might be something as simple as:
+
+```text
+Object X = 421
+Object Y = 238
+```
+
+Your robot code can then use that information.
+
+## Color detection
+
+One of the simplest applications of OpenCV is detecting objects based on color.
+
+A common approach is to convert the image into the **HSV** color space.
+
+HSV separates an image into:
+
+- **Hue**: the type of color
+- **Saturation**: the intensity of the color
+- **Value**: the brightness
+
+You can then create a mask that keeps only pixels within a particular color range.
+
+```text
+Original Image
+      ↓
+HSV Conversion
+      ↓
+Color Filter
+      ↓
+Binary Mask
+```
+
+This can be useful when a game element has a distinctive color.
+
+## Contours
+
+After creating a mask, OpenCV can identify **contours**.
+
+A contour represents the boundary of a connected region in an image.
+
+For example:
+
+```text
+       █████
+     █████████
+    ███████████
+     █████████
+       █████
+```
+
+OpenCV can identify the boundary of this object and provide information such as its area and bounding rectangle.
+
+Your program can then determine whether the detected region is actually the object you are looking for.
+
+## Where can you use OpenCV?
+
+OpenCV is a library, so it needs to run somewhere.
+
+In FTC, you will commonly encounter OpenCV in two places.
+
+### EasyOpenCV
+
+**EasyOpenCV** provides an FTC-friendly interface for running OpenCV pipelines.
+
+This allows you to write custom vision code that processes camera frames on the Robot Controller.
+
+A typical architecture looks like:
+
+```text
+Webcam
+   ↓
+EasyOpenCV
+   ↓
+Your OpenCV Pipeline
+   ↓
+Detection Data
+   ↓
+Robot Code
+```
+
+EasyOpenCV gives you direct control over the vision pipeline.
+
+If you want to build custom OpenCV pipelines for FTC, see the [EasyOpenCV documentation](https://github.com/OpenFTC/EasyOpenCV).
+
+### Limelight
+
+OpenCV-style computer vision can also be used with dedicated vision hardware such as a Limelight.
+
+Instead of performing all of the image processing on the Robot Controller, the Limelight handles the processing on its own hardware.
+
+This can provide more processing capability while reducing the workload on the Robot Controller.
+
+Limelight also provides its own vision tools and pipeline system, so you do not necessarily need to write every part of the vision algorithm yourself.
+
+See the [Limelight documentation](https://docs.limelightvision.io/docs/docs-limelight/getting-started/limelight-3a) for more information.
+
+## When should you use OpenCV?
+
+OpenCV is useful when you need **custom vision processing**.
+
+For example:
+
+> Detect the largest yellow object in the camera's field of view.
+
+That is a custom vision problem, and OpenCV provides the tools to solve it.
+
+By contrast, if your problem is:
+
+> Find AprilTag ID 5.
+
+you probably do not need to build your own detector. The FTC SDK already provides an AprilTag processor.
+
+## OpenCV vs. machine learning
+
+OpenCV and machine learning are not the same thing.
+
+Traditional OpenCV techniques often use explicitly defined rules:
+
+```text
+If the pixel is within this color range
+        ↓
+Keep it
+
+If the contour is too small
+        ↓
+Ignore it
+```
+
+Machine learning approaches instead learn patterns from examples.
+
+Both approaches can be useful in FTC, but they are suited to different problems.
+
+For simple and predictable objects, traditional computer vision can often be easier to develop, debug, and run.
+
+## Building a good pipeline
+
+A good vision pipeline should be broken into clear stages:
+
+```text
+Capture
+  ↓
+Preprocess
+  ↓
+Filter
+  ↓
+Detect
+  ↓
+Validate
+  ↓
+Output
+```
+
+For example, after detecting an object, you might validate it based on:
+
+- Area
+- Width
+- Height
+- Aspect ratio
+- Position
+- Color
+- Shape
+
+Breaking the pipeline into stages makes it much easier to debug.
+
+## Learn more
+
+This page introduces the concepts behind OpenCV rather than teaching the entire library.
+
+For implementation details, use the [EasyOpenCV documentation](https://github.com/OpenFTC/EasyOpenCV).
+
+For OpenCV itself, see the [official OpenCV documentation](https://docs.opencv.org/).

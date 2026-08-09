@@ -1,0 +1,217 @@
+---
+title: AprilTags
+description: Detect AprilTags and use their pose to understand where your robot is relative to a target.
+---
+
+AprilTags are visual markers designed to be easily detected by cameras.
+
+They are similar to QR codes in appearance, but they are designed specifically for reliable detection and pose estimation.
+
+FTC uses the **36h11 AprilTag family**. Each tag has a unique numeric ID.
+
+## Detecting AprilTags
+
+The FTC SDK provides an `AprilTagProcessor` for detecting AprilTags.
+
+For example:
+
+```java
+AprilTagProcessor aprilTagProcessor =
+        AprilTagProcessor.easyCreateWithDefaults();
+```
+
+The processor can then be added to a VisionPortal:
+
+```java
+VisionPortal visionPortal = new VisionPortal.Builder()
+        .setCamera(webcam)
+        .addProcessor(aprilTagProcessor)
+        .build();
+```
+
+You can retrieve the currently visible tags using:
+
+```java
+List<AprilTagDetection> detections =
+        aprilTagProcessor.getDetections();
+```
+
+Each detection contains information about one tag.
+
+## Tag IDs
+
+Every AprilTag has an ID.
+
+You can use the ID to determine which tag the robot is looking at:
+
+```java
+for (AprilTagDetection detection : detections) {
+    telemetry.addData("Tag ID", detection.id);
+}
+```
+
+For example, you might want your robot to react differently depending on whether it sees tag 1, tag 2, or tag 3.
+
+## Tag metadata
+
+Knowing a tag's ID is useful, but it is not enough to determine its physical position.
+
+Pose estimation requires information about the physical tag, including its size and, for field localization, its known position on the field.
+
+The FTC SDK provides AprilTag libraries containing metadata for the tags used on FTC fields.
+
+## Pose estimation
+
+One of the most useful features of AprilTags is **pose estimation**.
+
+Pose describes both the position and orientation of an object.
+
+The FTC SDK can estimate the pose of a detected AprilTag relative to the camera.
+
+The position is represented using three axes:
+
+```text
+          Z
+          ↑
+          |
+          |
+          ●────────→ X
+         /
+        /
+       ↓ Y
+```
+
+The detection provides values such as:
+
+```java
+detection.ftcPose.x
+detection.ftcPose.y
+detection.ftcPose.z
+```
+
+These values describe the tag's position relative to the camera.
+
+## Orientation
+
+The SDK also estimates the tag's orientation:
+
+```java
+detection.ftcPose.pitch
+detection.ftcPose.roll
+detection.ftcPose.yaw
+```
+
+These measurements describe how the tag is rotated relative to the camera.
+
+Yaw is especially useful for alignment.
+
+For example, a robot could use the tag's yaw to determine whether it needs to rotate left or right.
+
+## Range and bearing
+
+The SDK also provides convenient measurements such as:
+
+```java
+double range = detection.ftcPose.range;
+double bearing = detection.ftcPose.bearing;
+double elevation = detection.ftcPose.elevation;
+```
+
+These can be easier to use than the raw X, Y, and Z coordinates.
+
+For example:
+
+- **Range**: distance to the tag
+- **Bearing**: horizontal angle to the tag
+- **Elevation**: vertical angle to the tag
+
+This makes it relatively straightforward to build a target-alignment system.
+
+## Using AprilTags for alignment
+
+Suppose a robot needs to line up with an AprilTag.
+
+The process could look like:
+
+```text
+Detect Tag
+    ↓
+Get Range, Bearing, and Yaw
+    ↓
+Calculate Alignment Error
+    ↓
+Correct Robot Movement
+```
+
+The robot could use:
+
+- Bearing to correct horizontal alignment
+- Range to correct distance
+- Yaw to correct heading
+
+This can be combined with PID control to create smooth automatic alignment.
+
+## AprilTags for localization
+
+AprilTags can also be used to determine where the robot is on the field.
+
+The FTC field has known AprilTag locations.
+
+If the robot knows:
+
+1. Where the tag is on the field
+2. Where the tag is relative to the camera
+3. Where the camera is mounted on the robot
+
+it can estimate the robot's field position.
+
+Conceptually:
+
+```text
+Known Tag Position
+        +
+Tag → Camera Measurement
+        +
+Camera → Robot Transform
+        ↓
+Robot Field Pose
+```
+
+This is the foundation of AprilTag-based localization.
+
+## Accuracy
+
+AprilTag pose estimation is an estimate, not a perfect measurement.
+
+Accuracy can be affected by:
+
+- Camera calibration
+- Tag size
+- Distance
+- Lighting
+- Motion blur
+- Viewing angle
+- Camera placement
+- Image resolution
+
+A tag that occupies only a few pixels in the image will generally produce a less reliable measurement than a large, clearly visible tag.
+
+Good camera placement and calibration are therefore important for reliable vision.
+
+## AprilTags in autonomous
+
+AprilTags can be especially useful during autonomous.
+
+For example, a robot could:
+
+1. Drive using its normal localization system.
+2. Detect an AprilTag.
+3. Compare its estimated position to its expected position.
+4. Correct its localization.
+5. Continue the autonomous routine.
+
+This allows vision to act as an additional source of positional information rather than replacing the robot's entire localization system.
+
+## Learn more
+
+The [FTC AprilTag documentation](https://ftc-docs.firstinspires.org/apriltag/vision_portal/apriltag_intro/apriltag-intro.html) covers AprilTag detection, tag metadata, pose estimation, camera calibration, and field localization in greater detail.

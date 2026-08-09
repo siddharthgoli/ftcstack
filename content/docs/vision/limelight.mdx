@@ -1,0 +1,194 @@
+---
+title: Limelight
+description: Use dedicated vision hardware to process camera data and provide measurements to your robot.
+---
+
+A **Limelight** is a dedicated vision system designed for robotics.
+
+Instead of performing all computer vision processing on the Robot Controller, a Limelight has its own processor that analyzes camera images and sends the results to your robot.
+
+The architecture looks like:
+
+```text
+Camera
+   ↓
+Limelight
+   ↓
+Vision Processing
+   ↓
+Detection / Pose Data
+   ↓
+Robot Code
+```
+
+This makes the Limelight different from a typical VisionPortal setup, where the Robot Controller manages the camera and vision processing.
+
+## Why use a Limelight?
+
+Computer vision can require significant processing power.
+
+A dedicated vision device allows the robot controller to focus on running the rest of the robot program while the Limelight handles vision processing.
+
+Limelight also provides a collection of prebuilt vision capabilities, which means you do not need to write every vision algorithm yourself.
+
+Common applications include:
+
+- AprilTag detection
+- Robot localization
+- Target tracking
+- Color-based detection
+- Object detection
+- Neural network-based detection
+- Custom vision pipelines
+
+## Pipelines
+
+A Limelight uses **pipelines** to determine how camera images should be processed.
+
+A pipeline defines what the Limelight should look for and how it should analyze the camera image.
+
+For example, a color-based pipeline might look like:
+
+```text
+Camera Image
+     ↓
+Color Filtering
+     ↓
+Object Detection
+     ↓
+Target Position
+```
+
+An AprilTag pipeline might instead look like:
+
+```text
+Camera Image
+     ↓
+AprilTag Detection
+     ↓
+Tag ID + Pose
+```
+
+Pipelines can be configured and tested through the Limelight's interface.
+
+## AprilTags
+
+Limelights can detect AprilTags and provide information about the detected tags.
+
+Depending on the configuration, this can include:
+
+- Tag ID
+- Target position
+- Target orientation
+- Target area
+- Image location
+- Robot pose
+
+This makes Limelight useful for the same types of applications discussed in the [AprilTags](./apriltags) page:
+
+- Alignment
+- Navigation
+- Localization
+- Autonomous routines
+
+## Pose estimation
+
+A Limelight can also estimate the robot's pose on the field.
+
+Conceptually:
+
+```text
+AprilTag
+   ↓
+Camera detects tag
+   ↓
+Limelight estimates pose
+   ↓
+Camera position is transformed
+   ↓
+Robot field pose
+```
+
+This can provide another source of localization information alongside encoders and an IMU.
+
+As with any vision-based pose estimate, accuracy depends on factors such as:
+
+- Camera calibration
+- Tag visibility
+- Camera placement
+- Lighting
+- Viewing angle
+- Distance from the tag
+
+## Communicating with robot code
+
+The Limelight performs its vision processing independently from your robot program.
+
+Your robot code communicates with the Limelight and reads the resulting measurements.
+
+For example, your program might receive information such as:
+
+```text
+Target detected: true
+Horizontal error: -7.2°
+Distance: 34.1 in
+```
+
+Your robot can then use those measurements to make decisions.
+
+For example:
+
+```text
+Vision Measurement
+       ↓
+Calculate Error
+       ↓
+Controller
+       ↓
+Motor Power
+       ↓
+Robot Movement
+```
+
+This becomes especially powerful when vision is combined with control theory.
+
+For example, a robot could use the horizontal error from a Limelight as the input to a PID controller to automatically align itself with a target.
+
+## Limelight vs. VisionPortal
+
+Both Limelight and VisionPortal can provide powerful vision capabilities, but they work differently.
+
+|                     | VisionPortal              | Limelight                       |
+| ------------------- | ------------------------- | ------------------------------- |
+| Processing          | Robot Controller          | Dedicated vision device         |
+| FTC SDK integration | Direct                    | Through Limelight communication |
+| AprilTags           | Yes                       | Yes                             |
+| Custom vision       | Yes                       | Yes                             |
+| Hardware            | Camera + Robot Controller | Dedicated Limelight             |
+| Processing          | Shared with robot code    | Dedicated hardware              |
+
+Neither is automatically better.
+
+VisionPortal is a natural choice when you want to stay within the FTC SDK and use its built-in vision processors.
+
+A Limelight can be attractive when you want dedicated vision hardware and the additional tools provided by the Limelight ecosystem.
+
+## When should you use a Limelight?
+
+A Limelight can make sense when:
+
+- Your team needs dedicated vision processing
+- You need advanced AprilTag or localization capabilities
+- You want to reduce vision processing on the Robot Controller
+- You want configurable vision pipelines
+- You want to use the tools provided by the Limelight ecosystem
+
+However, a Limelight also adds another piece of hardware and another system that your team needs to configure and maintain.
+
+For a simple AprilTag detector, VisionPortal may be all you need.
+
+## Learn more
+
+This page is intended to explain **what a Limelight is and where it fits into an FTC robot**, not replace the official documentation.
+
+For hardware setup, pipeline configuration, APIs, AprilTags, localization, and advanced features, see the [official Limelight documentation](https://docs.limelightvision.io/docs/docs-limelight/getting-started/limelight-3a).

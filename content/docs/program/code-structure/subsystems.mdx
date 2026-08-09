@@ -1,0 +1,98 @@
+---
+title: Subsystems
+description: Organize robot mechanisms into independent, reusable components.
+---
+
+Subsystems organize a robot into separate mechanisms. Each subsystem represents one part of the robot and contains everything needed to control it.
+
+Examples:
+
+```
+Subsystems
+├── DriveSubsystem
+├── IntakeSubsystem
+├── ShooterSubsystem
+└── ArmSubsystem
+```
+
+Each subsystem:
+
+- Owns the hardware for one mechanism
+- Contains the logic for that mechanism
+- Has an init() method for initialization
+- Has an update() method for repeated updates
+
+Example:
+
+```java
+public class ShooterSubsystem {
+
+    private DcMotorEx flywheel;
+
+    public void init(HardwareMap hardwareMap) {
+        flywheel = hardwareMap.get(
+            DcMotorEx.class,
+            "flywheel"
+        );
+    }
+
+    public void update() {
+        // Update shooter logic
+    }
+
+    public void shoot() {
+        flywheel.setVelocity(3500);
+    }
+}
+```
+
+The rest of the robot does not need to know how the shooter works. This creates a consistent structure where every mechanism follows the same pattern.
+
+Instead of:
+
+```java
+flywheel.setVelocity(3500);
+hood.setPosition(0.3);
+```
+
+other parts of the code can simply use:
+
+```java
+shooter.shoot();
+```
+
+## Why Not Put All Hardware in One Class?
+
+A common mistake is creating one large hardware class:
+
+```
+RobotHardware
+├── Drive Motors
+├── Shooter Motors
+├── Intake Servos
+├── Sensors
+└── Everything Else
+```
+
+Although this can work for small robots, it makes testing difficult.
+
+If you want to test the shooter, you should not need to initialize the entire robot.
+
+With subsystems:
+
+```
+ShooterSubsystem
+    ↓
+Shooter Hardware
+    ↓
+Shooter Testing
+```
+
+Each mechanism can be developed and tested independently.
+
+A well-designed subsystem should:
+
+- Own its hardware
+- Provide simple methods
+- Hide implementation details
+- Only handle one mechanism

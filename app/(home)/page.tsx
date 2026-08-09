@@ -4,123 +4,47 @@ import {
     Blocks,
     BrainCircuit,
     BookOpenText,
+    Check,
     Code2,
     Cpu,
+    Eye,
     Gauge,
-    GitBranch,
-    SearchCode,
     Sparkles,
-    Target,
 } from "lucide-react";
-
-const learningPaths = [
-    {
-        title: "Beginner Path",
-        description:
-            "Learn FTC programming fundamentals, from Java and the SDK to your first working robot program.",
-        href: "/docs/learn/getting-started",
-        accent: "from-sky-400/20 to-cyan-400/5",
-        icon: BookOpenText,
-        steps: [
-            "FTC fundamentals",
-            "Java essentials",
-            "SDK setup",
-            "Your first OpMode",
-        ],
-    },
-    {
-        title: "Programming Path",
-        description:
-            "Build software like a competitive FTC team with organized, maintainable robot code.",
-        href: "/docs/programming/teleop",
-        accent: "from-emerald-400/20 to-teal-400/5",
-        icon: Blocks,
-        steps: [
-            "Code architecture",
-            "Subsystem design",
-            "TeleOp systems",
-            "Autonomous structure",
-        ],
-    },
-    {
-        title: "Advanced Path",
-        description:
-            "Explore the systems that separate functional robots from competition-ready robots.",
-        href: "/docs/control-theory/open-closed",
-        accent: "from-amber-400/20 to-orange-400/5",
-        icon: BrainCircuit,
-        steps: [
-            "PID control",
-            "Feedforward",
-            "Vision pipelines",
-            "Motion planning",
-        ],
-    },
-];
-
-const featureHighlights = [
-    {
-        title: "FTC-focused learning",
-        description:
-            "Concepts are explained through real robot applications, not abstract examples.",
-        icon: Target,
-    },
-    {
-        title: "Engineering practices",
-        description:
-            "Learn version control, architecture, naming conventions, and team workflows.",
-        icon: GitBranch,
-    },
-    {
-        title: "Debugging tools",
-        description:
-            "Use telemetry, dashboards, logs, and measurements to diagnose problems.",
-        icon: SearchCode,
-    },
-    {
-        title: "Reusable code",
-        description:
-            "Build a library of patterns for mechanisms, autonomous, and utilities.",
-        icon: Code2,
-    },
-];
 
 const sectionCards = [
     {
         title: "Learn",
-        description: "Start with FTC concepts, Java, and SDK fundamentals.",
+        description:
+            "FTC fundamentals, Java, the SDK, and everything you need to get started.",
         href: "/docs/learn/getting-started",
         icon: Sparkles,
     },
     {
-        title: "Programming",
-        description: "Learn how competitive teams structure robot software.",
-        href: "/docs/programming/teleop",
-        icon: Cpu,
+        title: "Program",
+        description:
+            "Architecture, subsystems, TeleOp, autonomous, and competitive code structure.",
+        href: "/docs/program/teleop",
+        icon: Code2,
     },
     {
         title: "Control Theory",
-        description: "Understand feedback systems, tuning, and robot motion.",
+        description:
+            "Feedback systems, PID, motion control, localization, and tuning.",
         href: "/docs/control-theory/open-closed",
         icon: Gauge,
     },
-    // {
-    //     title: "Vision",
-    //     description:
-    //         "FTC camera pipelines, detection systems, and real-world debugging.",
-    //     href: "/docs/vision",
-    //     icon: ShieldCheck,
-    // },
-    // {
-    //     title: "Snippets",
-    //     description:
-    //         "Implementation templates and patterns you can drop into a codebase.",
-    //     href: "/docs/snippets",
-    //     icon: Wrench,
-    // },
+    {
+        title: "Vision",
+        description:
+            "AprilTags, OpenCV, Limelight, pose estimation, and vision pipelines.",
+        href: "/docs/vision",
+        icon: Eye,
+    },
     {
         title: "Reference",
-        description: "Libraries, tools, resources, and quick documentation.",
+        description:
+            "Libraries, tools, terminology, and resources for building your robot.",
         href: "/docs/reference/resources",
         icon: BookOpenText,
     },
@@ -128,157 +52,60 @@ const sectionCards = [
 
 export default function HomePage() {
     return (
-        <main className="relative flex-1 overflow-hidden">
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.15),transparent_30%),radial-gradient(circle_at_left_top,rgba(14,165,233,0.18),transparent_28%)]" />
+        <main className="min-h-screen">
+            {/* Background */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[700px] overflow-hidden">
+                <div className="absolute left-1/2 top-[-300px] h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-sky-500/[0.08] blur-3xl" />
 
-            <section className="mx-auto flex max-w-7xl flex-col gap-20 px-6 py-16 md:px-10 lg:px-12 lg:py-24">
-                <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-                    <div className="space-y-8">
-                        <div className="space-y-5">
-                            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-balance text-fd-foreground md:text-6xl lg:text-7xl">
-                                Learn to program FTC robots like a competitive
-                                software team.
-                            </h1>
+                <div
+                    className="absolute inset-0 opacity-[0.035]"
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+                        backgroundSize: "64px 64px",
+                    }}
+                />
+            </div>
 
-                            <p className="max-w-2xl text-lg leading-8 text-fd-muted-foreground md:text-xl">
-                                FTC Code Companion is a complete programming
-                                curriculum covering Java, the FTC SDK, robot
-                                architecture, autonomous systems, control
-                                theory, and vision.
-                            </p>
-                        </div>
+            <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-10 lg:px-12 lg:pb-32 lg:pt-24">
+                {/* Hero */}
+                <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div>
+                        <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.04em] text-fd-foreground md:text-6xl lg:text-7xl lg:leading-[1.05]">
+                            Your foundation for FTC software.
+                            <br />
+                            {/* <span className="text-fd-muted-foreground">
+                                Write better code.
+                            </span> */}
+                        </h1>
 
-                        <div className="flex flex-wrap gap-3">
-                            <Link
-                                href="/docs"
-                                className="inline-flex items-center gap-2 rounded-full bg-fd-primary px-5 py-3 text-sm font-medium text-fd-primary-foreground transition-transform hover:-translate-y-0.5"
-                            >
-                                Start Learning
-                                <ArrowRight className="h-4 w-4" />
-                            </Link>
-                        </div>
-                    </div>
+                        <p className="mt-7 max-w-2xl text-lg leading-8 text-fd-muted-foreground md:text-xl">
+                            FTC Stack is a practical programming curriculum for
+                            teams that want to move beyond getting a robot to
+                            work and start building software that can compete.
+                        </p>
 
-                    <div className="relative">
-                        <div className="cc101-glow absolute inset-0 -z-10 rounded-[2rem] blur-3xl" />
-
-                        <div className="cc101-panel rounded-[2rem] p-6 md:p-8">
-                            <div className="mb-6 flex justify-between text-sm text-fd-muted-foreground">
-                                <span>FTC Code Companion</span>
-                                <span>Java • FTC SDK • Control</span>
-                            </div>
-
-                            <div className="grid gap-4 sm:grid-cols-2">
-                                {[
-                                    [
-                                        "Learn",
-                                        "Understand FTC, Java, and the SDK.",
-                                    ],
-                                    [
-                                        "Build",
-                                        "Create organized robot software.",
-                                    ],
-                                    ["Tune", "Improve motion and mechanisms."],
-                                    [
-                                        "Compete",
-                                        "Ship reliable season-ready code.",
-                                    ],
-                                ].map(([title, description]) => (
-                                    <div
-                                        key={title}
-                                        className="rounded-2xl border border-fd-border bg-fd-card/80 p-4"
-                                    >
-                                        <p className="font-medium text-fd-foreground">
-                                            {title}
-                                        </p>
-                                        <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
-                                            {description}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-fd-border bg-fd-card/70 px-3.5 py-1.5 text-sm text-fd-muted-foreground backdrop-blur">
+                            {" "}
+                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-400/10">
+                                {" "}
+                                <Code2 className="h-3 w-3 text-sky-400" />{" "}
+                            </span>
+                            Created by Siddharth Goli • 14481 Don&apos;t Blink
                         </div>
                     </div>
-                </div>
 
-                <div className="grid gap-5 md:grid-cols-3">
-                    {learningPaths.map((path) => {
-                        const Icon = path.icon;
-
-                        return (
-                            <Link
-                                key={path.title}
-                                href={path.href}
-                                className="group rounded-[1.5rem] border border-fd-border bg-fd-card/80 p-6 transition-all hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-xl"
-                            >
-                                <div
-                                    className={`rounded-2xl bg-gradient-to-br ${path.accent} p-4`}
-                                >
-                                    <Icon className="h-5 w-5 text-sky-300" />
-                                </div>
-
-                                <h2 className="mt-5 text-xl font-semibold text-fd-foreground">
-                                    {path.title}
-                                </h2>
-
-                                <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
-                                    {path.description}
+                    {/* Documentation Sections */}
+                    <div className="rounded-[1.75rem] border border-fd-border bg-fd-card/60 p-6 backdrop-blur md:p-8">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-400">
+                                    Documentation
                                 </p>
+                            </div>
 
-                                <ul className="mt-5 space-y-2 text-sm text-fd-muted-foreground">
-                                    {path.steps.map((step) => (
-                                        <li
-                                            key={step}
-                                            className="flex items-center gap-2"
-                                        >
-                                            <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
-                                            {step}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Link>
-                        );
-                    })}
-                </div>
-
-                <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-                    <div className="grid gap-4 sm:grid-cols-2">
-                        {featureHighlights.map((feature) => {
-                            const Icon = feature.icon;
-
-                            return (
-                                <div
-                                    key={feature.title}
-                                    className="rounded-[1.35rem] border border-fd-border bg-fd-card/80 p-5"
-                                >
-                                    <Icon className="h-5 w-5 text-sky-400" />
-
-                                    <h3 className="mt-4 font-semibold text-fd-foreground">
-                                        {feature.title}
-                                    </h3>
-
-                                    <p className="mt-2 text-sm leading-6 text-fd-muted-foreground">
-                                        {feature.description}
-                                    </p>
-                                </div>
-                            );
-                        })}
-                    </div>
-
-                    <div className="cc101-panel rounded-[1.75rem] p-6 md:p-8">
-                        <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-400">
-                            Documentation
-                        </p>
-
-                        <h2 className="mt-3 text-2xl font-semibold text-fd-foreground">
-                            Everything organized by purpose
-                        </h2>
-
-                        <p className="mt-3 text-sm leading-7 text-fd-muted-foreground">
-                            Follow the curriculum from beginner concepts to
-                            advanced systems, or jump directly to the reference
-                            material you need.
-                        </p>
+                            <BookOpenText className="h-5 w-5 text-fd-muted-foreground/50" />
+                        </div>
 
                         <div className="mt-6 grid gap-3 sm:grid-cols-2">
                             {sectionCards.map((section) => {
@@ -288,21 +115,72 @@ export default function HomePage() {
                                     <Link
                                         key={section.title}
                                         href={section.href}
-                                        className="rounded-2xl border border-fd-border bg-fd-card/80 p-4 hover:border-sky-400/40"
+                                        className="group rounded-2xl border border-fd-border bg-fd-card/80 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-fd-card"
                                     >
-                                        <Icon className="h-5 w-5 text-sky-400" />
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-400/10">
+                                                <Icon className="h-4 w-4 text-sky-400" />
+                                            </div>
 
-                                        <h3 className="mt-3 font-semibold text-fd-foreground">
+                                            <ArrowRight className="h-3.5 w-3.5 text-fd-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:text-sky-400 group-hover:opacity-100" />
+                                        </div>
+
+                                        <h3 className="mt-3 text-sm font-semibold text-fd-foreground">
                                             {section.title}
                                         </h3>
 
-                                        <p className="mt-2 text-sm text-fd-muted-foreground">
+                                        <p className="mt-1.5 text-xs leading-5 text-fd-muted-foreground">
                                             {section.description}
                                         </p>
                                     </Link>
                                 );
                             })}
+
+                            {/* Future Section */}
+                            <div className="flex min-h-[132px] flex-col justify-center rounded-2xl border border-dashed border-fd-border bg-fd-card/30 p-4 opacity-50">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-fd-muted/10">
+                                    <Blocks className="h-4 w-4 text-fd-muted-foreground" />
+                                </div>
+
+                                <h3 className="mt-3 text-sm font-semibold text-fd-muted-foreground">
+                                    More coming soon
+                                </h3>
+
+                                <p className="mt-1.5 text-xs leading-5 text-fd-muted-foreground">
+                                    More FTC programming resources are on the
+                                    way.
+                                </p>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="relative mt-28 overflow-hidden rounded-[2rem] border border-fd-border bg-fd-card/60 px-6 py-12 text-center md:px-12 md:py-16">
+                    <div className="absolute left-1/2 top-0 h-48 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400/[0.08] blur-3xl" />
+
+                    <div className="relative">
+                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-400/10">
+                            <Cpu className="h-6 w-6 text-sky-400" />
+                        </div>
+
+                        <h2 className="mt-6 text-3xl font-semibold tracking-tight text-fd-foreground">
+                            Ready to build better?
+                        </h2>
+
+                        <p className="mx-auto mt-3 max-w-xl text-fd-muted-foreground">
+                            Start with the fundamentals, explore the curriculum,
+                            and build the skills to write software that holds up
+                            on competition day.
+                        </p>
+
+                        <Link
+                            href="/docs"
+                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-fd-primary px-6 py-3 text-sm font-medium text-fd-primary-foreground transition-all hover:-translate-y-0.5"
+                        >
+                            Start learning
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
                     </div>
                 </div>
             </section>

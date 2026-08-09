@@ -1,6 +1,6 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
-export const appName = "FTC Code Companion";
+export const appName = "FTC Stack";
 export const docsRoute = "/docs";
 export const docsImageRoute = "/og/docs";
 export const docsContentRoute = "/llms.mdx/docs";
@@ -8,7 +8,7 @@ export const logoSrc = "/db-logo.png";
 
 export const gitConfig = {
     user: "siddharthgoli",
-    repo: "ftccodecompanion",
+    repo: "ftcstack",
     branch: "main",
 };
 
@@ -18,7 +18,7 @@ export function baseOptions(): BaseLayoutProps {
             title: (
                 <>
                     <img
-                        className="size-10"
+                        className="size-8"
                         src={logoSrc}
                         alt="Don't Blink Logo"
                     />

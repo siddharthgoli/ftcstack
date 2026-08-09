@@ -3,6 +3,7 @@ import "./global.css";
 import { JetBrains_Mono, Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Metadata } from "next";
+import { appName, logoSrc } from "@/app/layout.shared";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -15,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "FTC Code Companion",
+    title: appName,
     icons: {
-        icon: "/db-logo.png",
+        icon: logoSrc,
     },
 };
 
@@ -29,7 +30,9 @@ export default function Layout({ children }: LayoutProps<"/">) {
             suppressHydrationWarning
         >
             <body className="flex flex-col min-h-screen">
-                <RootProvider>{children}</RootProvider>
+                <RootProvider theme={{ defaultTheme: "dark" }}>
+                    {children}
+                </RootProvider>
                 <Analytics />
             </body>
         </html>

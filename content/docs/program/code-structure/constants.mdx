@@ -1,0 +1,74 @@
+---
+title: Constants Classes
+description: Learn how to organize robot configuration and tuning values.
+---
+
+Robots contain many values that need to be tuned during development:
+
+- Motor directions
+- PID coefficients
+- Servo positions
+- Physical dimensions
+- Speed limits
+
+Instead of placing these values throughout the code, they should be stored in constants classes.
+
+## The Problem With Magic Numbers
+
+Example:
+
+```java
+hood.setPosition(0.37);
+```
+
+What does `0.37` represent?
+
+A few weeks later, it becomes difficult to remember.
+
+## Using Constants
+
+Create a constants class:
+
+```java
+public class ShooterConstants {
+
+    public static final double HOOD_SCORE_POSITION = 0.37;
+    public static final double TARGET_RPM = 3500;
+
+}
+```
+
+Then use it:
+
+```java
+hood.setPosition(
+    ShooterConstants.HOOD_SCORE_POSITION
+);
+```
+
+Now the meaning is clear.
+
+## Organizing Constants
+
+A larger robot may have:
+
+```
+constants
+├── DriveConstants.java
+├── ShooterConstants.java
+├── VisionConstants.java
+└── AutoConstants.java
+```
+
+Separating constants by subsystem makes tuning easier.
+
+## Benefits
+
+Constants classes:
+
+- Make code easier to read
+- Speed up tuning
+- Prevent duplicated values
+- Keep configuration separate from logic
+
+A well-organized codebase treats tuning values as part of the robot configuration, not scattered numbers hidden throughout the program.

@@ -6,12 +6,47 @@ import {
     DocsTitle,
     MarkdownCopyButton,
     ViewOptionsPopover,
+    PageFooter,
 } from "fumadocs-ui/layouts/docs/page";
+import { Feedback } from "@/components/feedback/client";
+import { type PageFeedback } from "@/components/feedback/schema";
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { gitConfig } from "@/app/layout.shared";
+import { createClient } from "@/utils/supabase/server";
+import { Footer } from "@/components/footer";
+
+async function submitPageFeedback(feedback: PageFeedback) {
+    "use server";
+
+    const supabase = await createClient();
+    const resourcePath = (() => {
+        try {
+            return new URL(feedback.url).pathname;
+        } catch {
+            return feedback.url;
+        }
+    })();
+
+    const { error } = await supabase.from("feedback").insert({
+        resource_path: resourcePath,
+        opinion: feedback.opinion === "good",
+        solved: feedback.solved,
+        learned: feedback.learned,
+        improved: feedback.improved,
+        team_number: feedback.teamNumber,
+        message: feedback.message,
+    });
+
+    if (error) {
+        console.error("Failed to save feedback", error);
+        return { success: false };
+    }
+
+    return { success: true };
+}
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
     const params = await props.params;
@@ -22,27 +57,40 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
     const markdownUrl = getPageMarkdownUrl(page).url;
 
     return (
-        <DocsPage toc={page.data.toc} full={page.data.full}>
-            <DocsTitle>{page.data.title}</DocsTitle>
-            <DocsDescription className="mb-0">
-                {page.data.description}
-            </DocsDescription>
-            <div className="flex flex-row gap-2 items-center border-b">
-                {/* <MarkdownCopyButton markdownUrl={markdownUrl} />
+        <>
+            <DocsPage
+                toc={page.data.toc}
+                full={page.data.full}
+                tableOfContent={{
+                    footer: (
+                        <div className="mt-4 border-t pt-4">
+                            <Feedback onSendAction={submitPageFeedback} />
+                        </div>
+                    ),
+                }}
+            >
+                <DocsTitle>{page.data.title}</DocsTitle>
+                <DocsDescription className="mb-0">
+                    {page.data.description}
+                </DocsDescription>
+                <div className="flex flex-row gap-2 items-center border-b">
+                    {/* <MarkdownCopyButton markdownUrl={markdownUrl} />
                 <ViewOptionsPopover
           markdownUrl={markdownUrl}
           githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
         /> */}
-            </div>
-            <DocsBody>
-                <MDX
-                    components={getMDXComponents({
-                        // this allows you to link to other pages with relative file paths
-                        a: createRelativeLink(source, page),
-                    })}
-                />
-            </DocsBody>
-        </DocsPage>
+                </div>
+                <DocsBody>
+                    <MDX
+                        components={getMDXComponents({
+                            // this allows you to link to other pages with relative file paths
+                            a: createRelativeLink(source, page),
+                        })}
+                    />
+                </DocsBody>
+            </DocsPage>
+            <Footer className="max-xl:col-span-full xl:col-start-3 xl:col-end-6" />
+        </>
     );
 }
 

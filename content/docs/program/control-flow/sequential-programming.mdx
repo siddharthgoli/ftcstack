@@ -1,0 +1,70 @@
+---
+title: Sequential Programming and Blocking Code
+description: Understand the limitations of sequential robot programs and blocking operations.
+---
+
+Sequential programming is the simplest way to organize code.
+
+Instructions execute from top to bottom:
+
+```java
+driveForward();
+turn();
+shoot();
+```
+
+This works well for simple tasks, but it quickly becomes difficult for competition robots.
+
+## The Problem with Sequential Code
+
+Consider an autonomous routine:
+
+```java
+driveForward();
+sleep(1000);
+shoot();
+```
+
+The robot is forced to follow a strict order.
+
+While the robot is driving or waiting, the program cannot easily:
+
+- Correct errors
+- Check sensors
+- Update other mechanisms
+- React to unexpected situations
+
+This becomes a problem when multiple systems need to work together.
+
+For example, a robot might need to:
+
+- Drive toward a goal
+- Spin up a shooter
+- Monitor alignment
+- Adjust an intake
+
+A sequential program struggles because it can only focus on one action at a time.
+
+## Blocking Code
+
+A blocking operation prevents the rest of the program from continuing.
+
+A common example is:
+
+```java
+sleep(1000);
+```
+
+During this delay, the robot is not actively making decisions.
+
+Blocking code is not always bad. Small delays can be useful, but relying on blocking actions for robot behavior creates fragile programs.
+
+A better approach is to design code that can repeatedly check its current situation and decide what to do next.
+
+This leads to concepts like:
+
+- State machines
+- Non-blocking actions
+- Command-based programming
+
+Modern FTC codebases avoid long sequences of blocking instructions because robots need to constantly react.

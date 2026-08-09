@@ -1,4 +1,105 @@
 ---
-title: Coming Soon!
-description: Vision modules on the way.
+title: Introduction
+description: Use cameras and computer vision to give your robot information about its surroundings.
 ---
+
+A robot can only react to what it can measure.
+
+Encoders can tell you how far a motor has turned. An IMU can tell you how the robot is rotating. Distance sensors can tell you how far away an object is.
+
+But sometimes, you need your robot to **see**.
+
+Computer vision allows a robot to analyze images from a camera and extract useful information. This can allow a robot to identify objects, locate itself on the field, align with a target, or make decisions based on what is in front of it.
+
+## Why use vision?
+
+Vision is particularly useful when the information you need cannot easily be obtained from traditional sensors.
+
+Common applications include:
+
+- Detecting AprilTags
+- Localizing the robot on the field
+- Aligning with scoring targets
+- Detecting game elements
+- Identifying objects by color or shape
+- Estimating distance and orientation
+- Tracking objects
+
+Vision is not always the best solution. Cameras add complexity and can be affected by lighting, camera placement, motion blur, and processing limitations.
+
+Use vision when the information provided by a camera is worth that additional complexity.
+
+## How vision works
+
+At a high level, a vision system follows a simple process:
+
+```text
+Camera
+   ↓
+Image
+   ↓
+Vision Processing
+   ↓
+Useful Information
+   ↓
+Robot Code
+```
+
+The camera captures an image. A vision system processes that image and identifies something useful. Your robot code can then use that information to make decisions.
+
+For example:
+
+```text
+Camera sees AprilTag
+        ↓
+AprilTag processor detects the tag
+        ↓
+Pose is estimated
+        ↓
+Robot determines its position relative to the tag
+        ↓
+Robot uses that information to align
+```
+
+The important idea is that **vision turns images into data**.
+
+## Vision in FTC
+
+There are several technologies you may encounter when programming vision for an FTC robot.
+
+### VisionPortal
+
+VisionPortal is the FTC SDK's framework for working with cameras and vision processors.
+
+It provides built-in support for technologies such as AprilTags and can also be used with custom vision processors.
+
+### AprilTags
+
+AprilTags are visual markers that can be detected by a camera.
+
+The FTC SDK can identify a tag's ID and estimate its position and orientation relative to the camera.
+
+This makes AprilTags particularly useful for localization, navigation, and alignment.
+
+### OpenCV
+
+OpenCV is a computer vision library that provides tools for processing images.
+
+In FTC, OpenCV can be used to create custom vision pipelines, such as detecting objects based on color, shape, or location.
+
+### Limelight
+
+Limelight is a dedicated vision system that performs image processing on its own hardware and sends the results to your robot.
+
+It can be used for AprilTags, object detection, localization, and other vision applications.
+
+## The Vision section
+
+This section focuses on four major parts of FTC vision:
+
+1. [VisionPortal](./vision/visionportal): The FTC SDK's vision framework
+2. [AprilTags](./vision/apriltags): A powerful way to detect known visual markers
+3. [OpenCV](./vision/opencv): A toolkit for creating custom vision pipelines
+4. [Limelight](./vision/limelight): Dedicated vision hardware for advanced vision processing
+
+Each technology solves a slightly different problem. Understanding how they fit together is more important than memorizing a particular API.
