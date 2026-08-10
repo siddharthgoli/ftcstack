@@ -139,11 +139,11 @@ export function Feedback({
             }}
             className="rounded-lg border border-fd-border/60 bg-fd-card/60 p-3"
         >
-            <div className="flex flex-row gap-3">
-                <p className="text-sm font-medium text-fd-foreground">
+            <div className="flex flex-col gap-2">
+                <p className="text-center text-sm font-medium text-fd-foreground">
                     Was this resource helpful?
                 </p>
-                <div className="flex items-center gap-2">
+                <div className="grid grid-cols-2 gap-2">
                     <button
                         type="button"
                         disabled={previous !== null}
@@ -152,7 +152,7 @@ export function Feedback({
                             rateButtonVariants({
                                 active: activeOpinion === "good",
                             }),
-                            "size-10",
+                            "h-10 w-full",
                         )}
                         onClick={() => {
                             setOpinion((current) =>
@@ -173,7 +173,7 @@ export function Feedback({
                             rateButtonVariants({
                                 active: activeOpinion === "bad",
                             }),
-                            "size-10",
+                            "h-10 w-full",
                         )}
                         onClick={() => {
                             setOpinion((current) =>

@@ -88,6 +88,11 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
                         })}
                     />
                 </DocsBody>
+                <div className="xl:hidden max-xl:col-start-3 max-xl:col-end-4 px-4 pt-4 md:px-6">
+                    <div className="border-t pt-4">
+                        <Feedback onSendAction={submitPageFeedback} />
+                    </div>
+                </div>
             </DocsPage>
             <Footer className="max-xl:col-start-3 max-xl:col-end-4 xl:col-start-3 xl:col-end-6" />
         </>
