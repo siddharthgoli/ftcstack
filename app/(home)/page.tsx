@@ -85,13 +85,24 @@ export default function HomePage() {
                             work and start building software that can compete.
                         </p>
 
-                        <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-fd-border bg-fd-card/70 px-3.5 py-1.5 text-sm text-fd-muted-foreground backdrop-blur">
-                            {" "}
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-400/10">
+                        <div className="mt-8 flex flex-col items-start gap-4">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-fd-border bg-fd-card/70 px-3.5 py-1.5 text-sm text-fd-muted-foreground backdrop-blur">
                                 {" "}
-                                <Code2 className="h-3 w-3 text-sky-400" />{" "}
-                            </span>
-                            Created by Siddharth Goli • 14481 Don&apos;t Blink
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-400/10">
+                                    {" "}
+                                    <Code2 className="h-3 w-3 text-sky-400" />{" "}
+                                </span>
+                                Created by Siddharth Goli • 14481 Don&apos;t
+                                Blink
+                            </div>
+
+                            <Link
+                                href="/docs"
+                                className="inline-flex items-center gap-2 rounded-full bg-fd-primary px-6 py-3 text-sm font-medium text-fd-primary-foreground transition-all hover:-translate-y-0.5"
+                            >
+                                Get Started
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
                         </div>
                     </div>
 
